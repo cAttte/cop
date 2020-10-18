@@ -1,0 +1,21 @@
+{
+    "name": "cop",
+    "version": "0.0.0",
+    "description": "ok cop. The minimalistic auto-moderation Discord bot. ™",
+    "main": "dist/index.js",
+    "scripts": {
+        "start": "node dist/index.js"
+    },
+    "repository": "cAttte/cop",
+    "keywords": [
+        "discord",
+        "moderation",
+        "bot",
+        "moderation-bot",
+        "automod"
+    ],
+    "author": "catte_",
+    "license": "MIT",
+    "bugs": "https://github.com/cAttte/cop/issues",
+    "homepage": "https://github.com/cAttte/cop#readme"
+}
