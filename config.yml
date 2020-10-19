@@ -1,0 +1,35 @@
+token: discord_token_goes_here
+mute role: role_id_goes_here
+
+modules:
+    profanity:
+        custom: []
+        punishment:
+            custom: null
+            inappropriate: null
+            tame: null
+            swears: null
+            insults: delete message
+            slurs: kick user
+    invites:
+        validate: true
+        punishment: delete message
+    links:
+        validate: true
+        punishment: delete message
+    pings:
+        spam ping limit: 3
+        punishment:
+            spam ping: kick user
+            false ping: delete message
+    text walls:
+        max lines: 12
+        punishment: delete message
+    empty messages:
+        punishment: delete message
+    emoji spam:
+        minimum: 10
+        punishment: delete message
+    nick hoist:
+        mode: replace
+        punishment: null
