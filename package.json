@@ -26,6 +26,7 @@
     "dependencies": {
         "discord.js": "^12.3.1",
         "fanum": "^1.0.0",
+        "winston": "^3.3.3",
         "yaml": "^1.10.0"
     }
 }
