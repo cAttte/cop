@@ -31,14 +31,15 @@ export default winston.createLogger({
             format: winston.format.combine(
                 winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
                 winston.format.printf(info => {
-                    const color = colors[info.level]
+                    const color: chalk.Chalk = colors[info.level]
                     const timestamp = chalk.gray(`[${info.timestamp}]`)
                     const level = color(info.level.toUpperCase() + ":")
+                    const indent = info.level.length === 4 ? "  " : " "
                     const module = chalk.gray(info.message.match(/^(\[.+\]) /)?.[1] || "")
                     const message = info.message.replace(/^\[.+\] +/, "")
                     const space = module ? " " : ""
 
-                    return `${timestamp} ${level} ${module}${space}${message}`
+                    return timestamp + " " + level + indent + module + space + message
                 })
             )
         })
