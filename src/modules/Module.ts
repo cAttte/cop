@@ -1,6 +1,6 @@
 import { Schema } from "joi"
 
-type EventList = { [key: string]: () => void }
+type EventList = { [key: string]: (...any) => void }
 
 export default class Module {
     configSchema: Schema
