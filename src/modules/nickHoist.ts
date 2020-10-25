@@ -1,0 +1,63 @@
+import Joi from "joi"
+import Discord from "discord.js"
+import chalk from "chalk"
+import logger from "../logger"
+import Module from "./Module"
+
+const characters = {
+    "!": "ⵑ",
+    '"': "ʺ",
+    "'": "ʹ",
+    ".": "․",
+    "#": "ⵌ"
+}
+
+export default new Module({
+    configSchema: Joi.object({
+        mode: Joi.string().valid("replace", "remove", "prefix")
+    }),
+    events: {
+        guildMemberAdd: unhoistListener("guildMemberAdd"),
+        guildMemberUpdate: unhoistListener("guildMemberUpdate")
+    }
+})
+
+function unhoistListener(event: "guildMemberAdd" | "guildMemberUpdate") {
+    return async function unhoist(
+        this: Discord.Client,
+        config: { mode: "replace" | "remove" | "prefix" },
+        oldMember: Discord.GuildMember,
+        newMember?: Discord.GuildMember
+    ) {
+        const update = event === "guildMemberUpdate"
+        if (update && oldMember.displayName === newMember.displayName) return
+        const member = update ? newMember : oldMember
+
+        const charPattern = "[" + Object.keys(characters).join("") + "]"
+        const charRegex = new RegExp(`^${charPattern}+`, "g")
+        if (!member.displayName.match(charRegex)) return
+
+        let unhoisted = member.displayName
+        if (config.mode === "replace")
+            unhoisted = member.displayName.replace(charRegex, c => characters[c])
+        else if (config.mode === "remove")
+            unhoisted = member.displayName.replace(charRegex, "")
+        else if (config.mode === "prefix")
+            // prettier-ignore
+            unhoisted = "\u17B5" + member.displayName
+
+        const tag = chalk.blueBright(member.user.tag)
+        if (member.manageable) {
+            await member
+                .setNickname(unhoisted.slice(0, 32), "Unhoisted nickname")
+                .catch((error: Error) =>
+                    logger.warn(`[NickHoist]: Could not unhoist ${tag}: ${error.message}`)
+                )
+            logger.info(`[NickHoist] Unhoisted ${tag} as "${unhoisted}".`)
+        } else {
+            logger.warn(
+                `[NickHoist] Could not unhoist ${tag} as their highest role is above cop's.`
+            )
+        }
+    }
+}
