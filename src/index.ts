@@ -88,6 +88,17 @@ async function main() {
             }
         }
     }
+
+    let c = 0
+    for (const loadedModule in loadedConfig.modules) {
+        const module: Module = modules[loadedModule]
+        const moduleConfig = loadedConfig.modules[loadedModule]
+        for (const event in module.events) {
+            client.on(event, module.events[event].bind(client, moduleConfig))
+            c++
+        }
+    }
+    logger.debug(`Registered ${c} event listeners.`)
 }
 
 main()
