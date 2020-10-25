@@ -34,7 +34,11 @@ export default winston.createLogger({
                     const color = colors[info.level]
                     const timestamp = chalk.gray(`[${info.timestamp}]`)
                     const level = color(info.level.toUpperCase() + ":")
-                    return `${timestamp} ${level} ${info.message}`
+                    const module = chalk.gray(info.message.match(/^(\[.+\]) /)?.[1] || "")
+                    const message = info.message.replace(/^\[.+\] +/, "")
+                    const space = module ? " " : ""
+
+                    return `${timestamp} ${level} ${module}${space}${message}`
                 })
             )
         })
