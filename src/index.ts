@@ -10,7 +10,8 @@ const modules = {}
 async function main() {
     logger.debug("Loading config...")
     const data = await fs.promises
-        .readFile("./config.yml", "utf-8")
+        .readFile("./config.yml")
+        .then(buf => buf.toString())
         .catch((error: Error) => {
             logger.error(error.message)
             process.exit()
