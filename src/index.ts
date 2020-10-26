@@ -9,7 +9,8 @@ import stringifyObject from "./util/stringifyObject"
 import { Schema } from "joi"
 import Module from "./modules/Module"
 import nickHoist from "./modules/nickHoist"
-const modules = { nickHoist }
+import emptyMessages from "./modules/emptyMessages"
+const modules = { nickHoist, emptyMessages }
 
 const loadedConfig: { muteRole?: Discord.Role; modules: any } = { modules: {} }
 
