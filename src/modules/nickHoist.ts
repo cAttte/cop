@@ -17,13 +17,13 @@ export default new Module({
         mode: Joi.string().valid("replace", "remove", "prefix")
     }),
     events: {
-        guildMemberAdd: unhoistListener("guildMemberAdd"),
-        guildMemberUpdate: unhoistListener("guildMemberUpdate")
+        guildMemberAdd: createMemberHandler("guildMemberAdd"),
+        guildMemberUpdate: createMemberHandler("guildMemberUpdate")
     }
 })
 
-function unhoistListener(event: "guildMemberAdd" | "guildMemberUpdate") {
-    return async function unhoist(
+function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
+    return async function (
         this: Discord.Client,
         config: { mode: "replace" | "remove" | "prefix" },
         oldMember: Discord.GuildMember,
