@@ -52,12 +52,14 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
         if (member.manageable) {
             await member
                 .setNickname(unhoisted.slice(0, 32), "Unhoisted nickname")
+                .then(() =>
+                    logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
+                )
                 .catch((error: Error) =>
                     logger.warn(
                         `[NickHoist]: Could not nickname ${name}: ${error.message}`
                     )
                 )
-            logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
         } else {
             logger.warn(
                 `[NickHoist] Could not nickname ${name} as their highest role is above cop's.`
