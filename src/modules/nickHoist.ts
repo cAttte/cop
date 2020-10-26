@@ -46,17 +46,21 @@ function unhoistListener(event: "guildMemberAdd" | "guildMemberUpdate") {
             // prettier-ignore
             unhoisted = "\u17B5" + member.displayName
 
-        const tag = chalk.blueBright(member.user.tag)
+        let name = chalk.blueBright(member.user.tag)
+        if (member.user.username !== member.displayName)
+            name += " " + `(${chalk.blueBright(member.displayName)})`
         if (member.manageable) {
             await member
                 .setNickname(unhoisted.slice(0, 32), "Unhoisted nickname")
                 .catch((error: Error) =>
-                    logger.warn(`[NickHoist]: Could not unhoist ${tag}: ${error.message}`)
+                    logger.warn(
+                        `[NickHoist]: Could not nickname ${name}: ${error.message}`
+                    )
                 )
-            logger.info(`[NickHoist] Unhoisted ${tag} as "${unhoisted}".`)
+            logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
         } else {
             logger.warn(
-                `[NickHoist] Could not unhoist ${tag} as their highest role is above cop's.`
+                `[NickHoist] Could not nickname ${name} as their highest role is above cop's.`
             )
         }
     }
