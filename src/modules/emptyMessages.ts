@@ -27,7 +27,6 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         const message = event === "message" ? oldMessage : newMessage
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
-        if (message.author.id === this.user.id) return
 
         const charRegex = new RegExp("[" + characters.join("") + "]", "g")
         const parsed = parser(message.content)
