@@ -1,4 +1,5 @@
 import Joi from "joi"
+import boolean from "../schema/boolean"
 import Discord from "discord.js"
 import chalk from "chalk"
 import logger from "../logger"
@@ -7,9 +8,7 @@ import Module from "./Module"
 
 export default new Module({
     configSchema: Joi.object({
-        delete: Joi.boolean()
-            .truthy("y", "ye", "yes", "yeah", "yup")
-            .falsy("n", "no", "nah", "nope")
+        delete: boolean
     }),
     events: {
         message: createMessageHandler("message"),
