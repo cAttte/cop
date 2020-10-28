@@ -2,8 +2,8 @@ import Discord from "discord.js"
 import chalk from "chalk"
 import Joi from "joi"
 import boolean from "../schema/boolean"
-import logger from "../logger"
 import Module from "../struct/Module"
+import Client from "../struct/Client"
 
 export default new Module({
     configSchema: Joi.object({
@@ -18,7 +18,7 @@ export default new Module({
 
 function createMessageHandler(event: "message" | "messageUpdate") {
     return async function (
-        this: Discord.Client,
+        this: Client,
         config: { validate: boolean; delete: boolean },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
@@ -46,9 +46,9 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         if (config.delete) {
             await message
                 .delete({ reason: `Invite${s}` })
-                .then(() => logger.info(`[Invites] Deleted invite${s} by ${tag}.`))
+                .then(() => this.logger.info(`[Invites] Deleted invite${s} by ${tag}.`))
                 .catch((error: Error) =>
-                    logger.warn(
+                    this.logger.warn(
                         `[Invites] Could not delete message by ${tag}: ${error.message}`
                     )
                 )
