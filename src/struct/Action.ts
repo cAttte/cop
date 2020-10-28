@@ -5,7 +5,7 @@ export default abstract class Action {
     reason: string
     type: string
     target: Discord.Base
-    detail: string
+    detail?: string
 
     constructor(properties: any) {
         this.module = properties.module
