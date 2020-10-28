@@ -7,7 +7,7 @@ import normalizeConfig from "./util/normalizeConfig"
 import stringifyObject from "./util/stringifyObject"
 
 import { Schema } from "joi"
-import Module from "./modules/Module"
+import Module from "./struct/Module"
 import emptyMessages from "./modules/emptyMessages"
 import invites from "./modules/invites"
 import nickHoist from "./modules/nickHoist"

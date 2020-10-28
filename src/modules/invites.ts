@@ -3,7 +3,7 @@ import chalk from "chalk"
 import Joi from "joi"
 import boolean from "../schema/boolean"
 import logger from "../logger"
-import Module from "./Module"
+import Module from "../struct/Module"
 
 export default new Module({
     configSchema: Joi.object({

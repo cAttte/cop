@@ -2,7 +2,7 @@ import Joi from "joi"
 import Discord from "discord.js"
 import chalk from "chalk"
 import logger from "../logger"
-import Module from "./Module"
+import Module from "../struct/Module"
 
 const characters = {
     "!": "ⵑ",

@@ -4,7 +4,7 @@ import Discord from "discord.js"
 import chalk from "chalk"
 import logger from "../logger"
 import { parser } from "discord-markdown"
-import Module from "./Module"
+import Module from "../struct/Module"
 
 export default new Module({
     configSchema: Joi.object({
