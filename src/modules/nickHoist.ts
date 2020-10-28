@@ -1,8 +1,8 @@
 import Joi from "joi"
 import Discord from "discord.js"
 import chalk from "chalk"
-import logger from "../logger"
 import Module from "../struct/Module"
+import Client from "../struct/Client"
 
 const characters = {
     "!": "ⵑ",
@@ -24,7 +24,7 @@ export default new Module({
 
 function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
     return async function (
-        this: Discord.Client,
+        this: Client,
         config: { mode: "replace" | "remove" | "prefix" },
         oldMember: Discord.GuildMember,
         newMember?: Discord.GuildMember
@@ -53,15 +53,15 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
             await member
                 .setNickname(unhoisted.slice(0, 32), "Unhoisted nickname")
                 .then(() =>
-                    logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
+                    this.logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
                 )
                 .catch((error: Error) =>
-                    logger.warn(
+                    this.logger.warn(
                         `[NickHoist]: Could not nickname ${name}: ${error.message}`
                     )
                 )
         } else {
-            logger.warn(
+            this.logger.warn(
                 `[NickHoist] Could not nickname ${name} as their highest role is above cop's.`
             )
         }
