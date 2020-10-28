@@ -14,10 +14,10 @@ export default class DeleteAction extends Action {
         return result
     }
 
-    static formatGenericSuccess(target: Discord.Message) {
-        const id = chalk.blueBright(target.id)
-        const authorTag = chalk.blueBright(target.author.tag)
-        const authorID = chalk.blueBright(target.author.id)
+    static formatGenericSuccess(action: DeleteAction) {
+        const id = chalk.blueBright(action.target.id)
+        const authorTag = chalk.blueBright(action.target.author.tag)
+        const authorID = chalk.blueBright(action.target.author.id)
         return `Deleted message (${id}) by ${authorTag} (${authorID}).`
     }
 
@@ -29,7 +29,7 @@ export default class DeleteAction extends Action {
     }
 
     formatSuccess(reason: string): string {
-        const success = DeleteAction.formatGenericSuccess(this.target).slice(0, -1)
+        const success = DeleteAction.formatGenericSuccess(this).slice(0, -1)
         return `${success}: ${reason}`
     }
 }
