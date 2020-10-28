@@ -14,7 +14,7 @@ export default class DeleteAction extends Action {
         return result
     }
 
-    static formatGenericSuccess(action: DeleteAction) {
+    static formatGenericSuccess(action: DeleteAction): string {
         const id = chalk.blueBright(action.target.id)
         const authorTag = chalk.blueBright(action.target.author.tag)
         const authorID = chalk.blueBright(action.target.author.id)
