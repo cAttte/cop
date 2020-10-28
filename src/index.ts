@@ -5,6 +5,7 @@ import logger from "./logger"
 import Discord from "discord.js"
 import normalizeConfig from "./util/normalizeConfig"
 import stringifyObject from "./util/stringifyObject"
+import Client from "./struct/Client"
 
 import { Schema } from "joi"
 import Module from "./struct/Module"
@@ -66,7 +67,7 @@ async function main() {
     }
 
     const before = Date.now()
-    const client = new Discord.Client()
+    const client = new Client()
     await client.login(config.token).catch((error: Error) => {
         logger.error(`While logging in to Discord: ${error.message}`)
         process.exit(0)
