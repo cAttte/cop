@@ -1,18 +1,18 @@
 import Discord from "discord.js"
 
 export default abstract class Action {
-    module: string
-    reason: string
     type: string
+    module: string
     target: Discord.Base
+    reason: string
     detail?: string
 
     constructor(properties: any) {
-        this.module = properties.module
-        this.reason = properties.reason
         this.type = properties.type
+        this.module = properties.module
         this.target = properties.target
-        this.detail = properties.detail
+        this.reason = properties.reason
+        if (properties.detail) this.detail = properties.detail
     }
 
     abstract execute(): Promise<Discord.Base | Error>
