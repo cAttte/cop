@@ -14,13 +14,6 @@ export default class DeleteAction extends Action {
         return result
     }
 
-    static formatGenericSuccess(action: DeleteAction): string {
-        const id = chalk.blueBright(action.target.id)
-        const authorTag = chalk.blueBright(action.target.author.tag)
-        const authorID = chalk.blueBright(action.target.author.id)
-        return `Deleted message (${id}) by ${authorTag} (${authorID}).`
-    }
-
     formatError(message: string): string {
         const id = chalk.blueBright(this.target.id)
         const authorTag = chalk.blueBright(this.target.author.tag)
@@ -28,8 +21,10 @@ export default class DeleteAction extends Action {
         return `Could not delete message (${id}) by ${authorTag} (${authorID}): ${message}`
     }
 
-    formatSuccess(reason: string): string {
-        const success = DeleteAction.formatGenericSuccess(this).slice(0, -1)
-        return `${success}: ${reason}`
+    formatSuccess(): string {
+        const id = chalk.blueBright(this.target.id)
+        const authorTag = chalk.blueBright(this.target.author.tag)
+        const authorID = chalk.blueBright(this.target.author.id)
+        return `Deleted message (${id}) by ${authorTag} (${authorID}).`
     }
 }
