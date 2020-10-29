@@ -4,8 +4,6 @@ import Action from "./Action"
 
 export default class DeleteAction extends Action {
     type = "delete"
-    module: string
-    reason: string
     target: Discord.Message
 
     async execute(): Promise<Discord.Message | Error> {
