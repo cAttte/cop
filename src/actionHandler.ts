@@ -13,7 +13,7 @@ export default function createActionHandler(client: Client, handlers: Function[]
         // i know this is really bad but there are always going to be, at most, ~5 actions,
         // so performance isn't really a concern... i guess
         for (const action of actions) {
-            for (const otherAction of actions) {
+            actions = actions.filter(otherAction => {
                 if (action.equals(otherAction) && action !== otherAction) {
                     action.merge(otherAction)
                     return false
@@ -24,7 +24,7 @@ export default function createActionHandler(client: Client, handlers: Function[]
                     return false
                 }
                 return true
-            }
+            })
         }
 
         for (const action of actions) {
