@@ -15,7 +15,23 @@ export default abstract class Action {
         if (properties.detail) this.detail = properties.detail
     }
 
+    equals(other: this): boolean {
+        // 'id' is not a property of Discord.Base but all of its sub-classes have it.
+        // we'll just cast it to any for simplicity
+        return (
+            this.type === other.type &&
+            (<any>this.target).id === (<any>other.target).id &&
+            this.detail === other.detail
+        )
+    }
+
+    merge(other: this): this {
+        this.module = `${this.module}, ${other.module}`
+        this.reason = `${this.reason}, ${other.reason}`
+        return this
+    }
+
     abstract execute(): Promise<Discord.Base | Error>
     abstract formatError(message: string): string
-    abstract formatSuccess(message: string): string
+    abstract formatSuccess(): string
 }
