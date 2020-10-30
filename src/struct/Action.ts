@@ -7,8 +7,12 @@ export default abstract class Action {
     reason: string
     detail?: string
 
-    constructor(properties: any) {
-        this.type = properties.type
+    constructor(properties: {
+        module: string
+        target: Discord.Base
+        reason: string
+        detail?: string
+    }) {
         this.module = properties.module
         this.target = properties.target
         this.reason = properties.reason
