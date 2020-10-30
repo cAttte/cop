@@ -4,6 +4,8 @@ import Joi from "joi"
 import boolean from "../schema/boolean"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
+import Action from "../struct/Action"
+import DeleteAction from "../struct/DeleteAction"
 
 export default new Module({
     configSchema: Joi.object({
@@ -22,7 +24,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         config: { validate: boolean; delete: boolean },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
-    ) {
+    ): Promise<Action[]> {
         const message = event === "message" ? oldMessage : newMessage
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
@@ -42,17 +44,17 @@ function createMessageHandler(event: "message" | "messageUpdate") {
             if (!valid) return
         }
 
-        const tag = chalk.blueBright(message.author.tag)
-        const s = invites.length > 1 ? "s" : ""
+        const actions: Action[] = []
         if (config.delete) {
-            await message
-                .delete({ reason: `Invite${s}` })
-                .then(() => this.logger.info(`[Invites] Deleted invite${s} by ${tag}.`))
-                .catch((error: Error) =>
-                    this.logger.warn(
-                        `[Invites] Could not delete message by ${tag}: ${error.message}`
-                    )
-                )
+            actions.push(
+                new DeleteAction({
+                    module: "Invites",
+                    target: message,
+                    reason: "Posted invite" + (invites.length > 1 ? "s" : "")
+                })
+            )
         }
+
+        return actions
     }
 }
