@@ -33,13 +33,14 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         while ((matches = inviteRegex.exec(message.content))) invites.push(matches[1])
         if (invites.length === 0) return
 
-        let valid = !config.validate
-        if (config.validate)
+        if (config.validate) {
+            let valid = false
             for (const invite of invites) {
                 const fetched = await this.fetchInvite(invite).catch(() => null)
                 if (fetched) valid = true
             }
-        if (!valid) return
+            if (!valid) return
+        }
 
         const tag = chalk.blueBright(message.author.tag)
         const s = invites.length > 1 ? "s" : ""
