@@ -10,24 +10,28 @@ export default function createActionHandler(client: Client, handlers: Function[]
             if (result) actions = actions.concat(result)
         }
 
-        // i know this is really bad but there are always going to be, at most, ~5 actions,
-        // so performance isn't really a concern... i guess
-        for (const action of actions) {
-            actions = actions.filter(otherAction => {
-                if (action.equals(otherAction) && action !== otherAction) {
-                    action.merge(otherAction)
-                    return false
-                } else if (action.conflicts(otherAction)) {
-                    this.logger.debug(
-                        `Action of type "${action.type}" proposed by module ${otherAction.module} conflicts with that proposed by ${action.module}; opting for the latter.`
-                    )
-                    return false
+        // i know this is kinda bad but there are always going to be, at most, ~5 actions,
+        // so performance isn't really a concern i guess
+        const mergedActions = []
+        for (const otherAction of actions) {
+            if (mergedActions.length) {
+                for (const action of mergedActions) {
+                    if (action.equals(otherAction)) {
+                        action.merge(otherAction)
+                    } else if (action.conflicts(otherAction)) {
+                        this.logger.debug(
+                            `Action of type "${action.type}" proposed by module ${otherAction.module} conflicts with that proposed by ${action.module}; opting for the latter.`
+                        )
+                    } else {
+                        mergedActions.push(otherAction)
+                    }
                 }
-                return true
-            })
+            } else {
+                mergedActions.push(otherAction)
+            }
         }
 
-        for (const action of actions) {
+        for (const action of mergedActions) {
             const result = action.execute()
             if (result instanceof Error) {
                 const message = action.formatError(result.message)
