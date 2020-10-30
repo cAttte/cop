@@ -1,5 +1,4 @@
 import Discord from "discord.js"
-import chalk from "chalk"
 import Joi from "joi"
 import boolean from "../schema/boolean"
 import Module from "../struct/Module"
