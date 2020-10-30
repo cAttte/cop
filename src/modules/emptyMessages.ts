@@ -1,10 +1,10 @@
 import Joi from "joi"
 import boolean from "../schema/boolean"
 import Discord from "discord.js"
-import chalk from "chalk"
 import { parser } from "discord-markdown"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
+import DeleteAction from "../struct/DeleteAction"
 
 export default new Module({
     configSchema: Joi.object({
@@ -22,7 +22,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         config: { delete: boolean },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
-    ) {
+    ): Promise<DeleteAction[]> {
         const message = event === "message" ? oldMessage : newMessage
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
@@ -31,24 +31,20 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         const parsed = parser(message.content)
         const text = astToText(parsed).trim()
         const stripped = text.replace(charRegex, "")
+        if (stripped !== "") return
 
-        const tag = chalk.blueBright(message.author.tag)
-        if (stripped === "") {
-            if (config.delete) {
-                await message
-                    .delete({ reason: "Empty message" })
-                    .then(() =>
-                        this.logger.info(
-                            `[EmptyMessages] Deleted empty message by ${tag}.`
-                        )
-                    )
-                    .catch((error: Error) =>
-                        this.logger.warn(
-                            `[EmptyMessages] Could not delete message by ${tag}: ${error.message}`
-                        )
-                    )
-            }
+        const actions = []
+        if (config.delete) {
+            actions.push(
+                new DeleteAction({
+                    module: "EmptyMessages",
+                    target: message,
+                    reason: "Empty message"
+                })
+            )
         }
+
+        return actions
     }
 }
 
