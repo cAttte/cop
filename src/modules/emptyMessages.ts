@@ -4,6 +4,7 @@ import Discord from "discord.js"
 import { parser } from "discord-markdown"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
+import Action from "../struct/Action"
 import DeleteAction from "../struct/DeleteAction"
 
 export default new Module({
@@ -22,7 +23,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         config: { delete: boolean },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
-    ): Promise<DeleteAction[]> {
+    ): Promise<Action[]> {
         const message = event === "message" ? oldMessage : newMessage
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
@@ -33,7 +34,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         const stripped = text.replace(charRegex, "")
         if (stripped !== "") return
 
-        const actions = []
+        const actions: Action[] = []
         if (config.delete) {
             actions.push(
                 new DeleteAction({
