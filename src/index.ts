@@ -5,6 +5,7 @@ import logger from "./logger"
 import Discord from "discord.js"
 import normalizeConfig from "./util/normalizeConfig"
 import stringifyObject from "./util/stringifyObject"
+import createActionHandler from "./actionHandler"
 import Client from "./struct/Client"
 
 import { Schema } from "joi"
@@ -97,15 +98,22 @@ async function main() {
     }
 
     let c = 0
+    const eventHandlers: { [key: string]: Function[] } = {}
     for (const loadedModule in loadedConfig.modules) {
         const module: Module = modules[loadedModule]
         const moduleConfig = loadedConfig.modules[loadedModule]
         for (const event in module.events) {
-            client.on(event, module.events[event].bind(client, moduleConfig))
+            if (!eventHandlers[event]) eventHandlers[event] = []
+            eventHandlers[event].push(module.events[event].bind(client, moduleConfig))
             c++
         }
     }
     logger.debug(`Registered ${c} event listeners.`)
+
+    for (const event in eventHandlers) {
+        const actionHandler = createActionHandler(client, eventHandlers[event])
+        client.on(event, actionHandler)
+    }
 }
 
 main()
