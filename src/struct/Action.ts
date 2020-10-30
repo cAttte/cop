@@ -25,6 +25,14 @@ export default abstract class Action {
         )
     }
 
+    conflicts(other: this): boolean {
+        return (
+            this.type === other.type &&
+            (<any>this.target).id === (<any>other.target).id &&
+            this.detail !== other.detail
+        )
+    }
+
     merge(other: this): this {
         this.module = `${this.module}, ${other.module}`
         this.reason = `${this.reason}, ${other.reason}`
