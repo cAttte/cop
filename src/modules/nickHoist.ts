@@ -1,8 +1,9 @@
 import Joi from "joi"
 import Discord from "discord.js"
-import chalk from "chalk"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
+import Action from "../struct/Action"
+import NickAction from "../struct/NickAction"
 
 const characters = {
     "!": "ⵑ",
@@ -28,7 +29,7 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
         config: { mode: "replace" | "remove" | "prefix" },
         oldMember: Discord.GuildMember,
         newMember?: Discord.GuildMember
-    ) {
+    ): Promise<Action[]> {
         const update = event === "guildMemberUpdate"
         if (update && oldMember.displayName === newMember.displayName) return
         const member = update ? newMember : oldMember
@@ -46,24 +47,15 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
             // prettier-ignore
             unhoisted = "\u17B5" + member.displayName
 
-        let name = chalk.blueBright(member.user.tag)
-        if (member.user.username !== member.displayName)
-            name += " " + `(${chalk.blueBright(member.displayName)})`
-        if (member.manageable) {
-            await member
-                .setNickname(unhoisted.slice(0, 32), "Unhoisted nickname")
-                .then(() =>
-                    this.logger.info(`[NickHoist] Unhoisted ${name} as "${unhoisted}".`)
-                )
-                .catch((error: Error) =>
-                    this.logger.warn(
-                        `[NickHoist]: Could not nickname ${name}: ${error.message}`
-                    )
-                )
-        } else {
-            this.logger.warn(
-                `[NickHoist] Could not nickname ${name} as their highest role is above cop's.`
-            )
-        }
+        const actions: Action[] = [
+            new NickAction({
+                module: "NickHoist",
+                target: member,
+                reason: "Hoisting nickname",
+                detail: unhoisted
+            })
+        ]
+
+        return actions
     }
 }
