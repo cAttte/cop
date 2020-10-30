@@ -13,7 +13,8 @@ import Module from "./struct/Module"
 import emptyMessages from "./modules/emptyMessages"
 import invites from "./modules/invites"
 import nickHoist from "./modules/nickHoist"
-const modules = { emptyMessages, invites, nickHoist }
+import textWalls from "./modules/textWalls"
+const modules = { emptyMessages, invites, nickHoist, textWalls }
 
 const loadedConfig: { muteRole?: Discord.Role; modules: any } = { modules: {} }
 
