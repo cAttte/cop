@@ -66,8 +66,11 @@ async function main() {
         )
     }
 
+    const client = new Client({
+        partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"]
+    })
+
     const before = Date.now()
-    const client = new Client()
     await client.login(config.token).catch((error: Error) => {
         logger.error(`While logging in to Discord: ${error.message}`)
         process.exit(0)
