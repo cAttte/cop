@@ -5,13 +5,13 @@ export default abstract class Action {
     module: string
     target: Discord.Base
     reason: string
-    detail?: string
+    detail?: any
 
     constructor(properties: {
         module: string
         target: Discord.Base
         reason: string
-        detail?: string
+        detail?: any
     }) {
         this.module = properties.module
         this.target = properties.target
