@@ -28,7 +28,6 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         const message = event === "message" ? oldMessage : newMessage
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
-        if (message.author.id === this.user.id) return
 
         // 1,200 is a semi-arbitrary number of pixels that roughly
         // equates to a single line in a Discord message.
