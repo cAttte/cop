@@ -1,4 +1,5 @@
 import fs from "fs"
+import Joi from "joi"
 import YAML from "yaml"
 import chalk from "chalk"
 import logger from "./logger"
@@ -51,7 +52,7 @@ async function main() {
         }
 
         const moduleConfig: Module = config.modules[module]
-        const configSchema: Schema = modules[module].configSchema
+        const configSchema: Schema = Joi.object(modules[module].configSchema)
         const { error, value } = configSchema.validate(moduleConfig)
 
         if (error) {
