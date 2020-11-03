@@ -1,18 +1,13 @@
 import Discord from "discord.js"
 
-export default abstract class Action {
+export default abstract class Action implements ActionProperties {
     type: string
     module: string
     target: Discord.Base
     reason: string
     detail?: any
 
-    constructor(properties: {
-        module: string
-        target: Discord.Base
-        reason: string
-        detail?: any
-    }) {
+    constructor(properties: ActionProperties) {
         this.module = properties.module
         this.target = properties.target
         this.reason = properties.reason
@@ -46,4 +41,11 @@ export default abstract class Action {
     abstract execute(): Promise<Discord.Base | Error>
     abstract formatError(message: string): string
     abstract formatSuccess(): string
+}
+
+export type ActionProperties = {
+    module: string
+    target: Discord.Base
+    reason: string
+    detail?: any
 }
