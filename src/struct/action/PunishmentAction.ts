@@ -56,11 +56,12 @@ export default class PunishmentAction extends Action implements PunishmentProper
         return parsed
     }
 
+    // return first punishment for now, todo: check punishment history
     static processPunishment(
         punishments: PunishmentProperties[],
         properties: ActionProperties
     ): PunishmentAction {
-        return
+        return new PunishmentAction({ ...punishments[0], ...properties })
     }
 
     async execute(): Promise<Discord.Base | Error> {
