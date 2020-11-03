@@ -64,8 +64,19 @@ export default class PunishmentAction extends Action implements PunishmentProper
         return new PunishmentAction({ ...punishments[0], ...properties })
     }
 
-    async execute(): Promise<Discord.Base | Error> {
-        return new Error()
+    async execute(muteRole: Discord.Role): Promise<Discord.Base | Error> {
+        try {
+            switch (this.type) {
+                case "mute":
+                    return await this.target.roles.add(muteRole)
+                case "kick":
+                    return await this.target.kick(this.reason)
+                case "ban":
+                    return await this.target.ban({ reason: this.reason })
+            }
+        } catch (error) {
+            return error
+        }
     }
 
     formatError(message: string): string {
