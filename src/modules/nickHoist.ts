@@ -1,9 +1,11 @@
 import Joi from "joi"
 import Discord from "discord.js"
+import punishment from "../schema/punishment"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import NickAction from "../struct/action/NickAction"
+import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
 
 const characters = {
     "!": "ⵑ",
@@ -15,7 +17,8 @@ const characters = {
 
 export default new Module({
     configSchema: {
-        mode: Joi.string().valid("replace", "remove", "prefix").default("replace")
+        mode: Joi.string().valid("replace", "remove", "prefix").default("replace"),
+        punishment: punishment
     },
     events: {
         guildMemberAdd: createMemberHandler("guildMemberAdd"),
@@ -26,7 +29,10 @@ export default new Module({
 function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
     return async function (
         this: Client,
-        config: { mode: "replace" | "remove" | "prefix" },
+        config: {
+            mode: "replace" | "remove" | "prefix"
+            punishment: PunishmentProperties[]
+        },
         oldMember: Discord.GuildMember,
         newMember?: Discord.GuildMember
     ): Promise<Action[]> {
@@ -55,6 +61,16 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
                 detail: unhoisted
             })
         ]
+
+        if (config.punishment) {
+            actions.push(
+                PunishmentAction.processPunishment(config.punishment, {
+                    module: "NickHoist",
+                    target: member,
+                    reason: "Hoisting nickname"
+                })
+            )
+        }
 
         return actions
     }
