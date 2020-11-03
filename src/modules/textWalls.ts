@@ -7,11 +7,13 @@ import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
+import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
 
 export default new Module({
     configSchema: {
         maxLines: Joi.number().max(2000).default(12),
-        delete: boolean.default(true)
+        delete: boolean.default(true),
+        punishment: punishment
     },
     events: {
         message: createMessageHandler("message"),
@@ -22,7 +24,11 @@ export default new Module({
 function createMessageHandler(event: "message" | "messageUpdate") {
     return async function (
         this: Client,
-        config: { maxLines: number; delete: boolean },
+        config: {
+            maxLines: number
+            delete: boolean
+            punishment: PunishmentProperties[]
+        },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
     ): Promise<Action[]> {
@@ -48,6 +54,16 @@ function createMessageHandler(event: "message" | "messageUpdate") {
                 new DeleteAction({
                     module: "TextWalls",
                     target: message,
+                    reason: "Text wall"
+                })
+            )
+        }
+
+        if (config.punishment) {
+            actions.push(
+                PunishmentAction.processPunishment(config.punishment, {
+                    module: "TextWalls",
+                    target: message.member,
                     reason: "Text wall"
                 })
             )
