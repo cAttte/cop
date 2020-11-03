@@ -56,8 +56,9 @@ async function main() {
         const { error, value } = configSchema.validate(moduleConfig)
 
         if (error) {
-            const message = error.details[0].message
-            logger.error(`While validating config for "${module}" module: ${message}.`)
+            const because = /^.+failed custom validation because /
+            const message = error.details[0].message.replace(because, "")
+            logger.error(`While validating config for "${module}" module: ${message}`)
             process.exit(0)
         }
         loadedConfig.modules[module] = value
