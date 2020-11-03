@@ -3,8 +3,8 @@ import Joi from "joi"
 import boolean from "../schema/boolean"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
-import Action from "../struct/Action"
-import DeleteAction from "../struct/DeleteAction"
+import Action from "../struct/action/Action"
+import DeleteAction from "../struct/action/DeleteAction"
 
 export default new Module({
     configSchema: Joi.object({

@@ -2,8 +2,8 @@ import Joi from "joi"
 import Discord from "discord.js"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
-import Action from "../struct/Action"
-import NickAction from "../struct/NickAction"
+import Action from "../struct/action/Action"
+import NickAction from "../struct/action/NickAction"
 
 const characters = {
     "!": "ⵑ",

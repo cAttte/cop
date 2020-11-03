@@ -1,6 +1,6 @@
 import Discord from "discord.js"
 import { Schema } from "joi"
-import Action from "./Action"
+import Action from "./action/Action"
 
 export default class Module {
     configSchema: Schema

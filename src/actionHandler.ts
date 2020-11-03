@@ -1,5 +1,5 @@
 import Client from "./struct/Client"
-import Action from "./struct/Action"
+import Action from "./struct/action/Action"
 import logger from "./logger"
 
 export default function createActionHandler(client: Client, handlers: Function[]) {
