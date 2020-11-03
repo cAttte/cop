@@ -109,9 +109,10 @@ type PunishmentProperties = {
 }
 
 const permanent = [
+    "forever",
+    "ever",
     "permanent",
     "permanently",
-    "ever",
     "infinity",
     "infinite",
     "inf",
