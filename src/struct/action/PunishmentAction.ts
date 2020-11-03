@@ -103,7 +103,7 @@ export default class PunishmentAction extends Action implements PunishmentProper
     }
 }
 
-type PunishmentProperties = {
+export type PunishmentProperties = {
     type: "mute" | "kick" | "ban"
     length?: number
 }
