@@ -47,7 +47,7 @@ async function main() {
 
     for (const module in config.modules) {
         if (!modules[module]) {
-            logger.warn(`Unknown module "${module}".`)
+            logger.warn(`Unknown module ${chalk.yellowBright(module)}.`)
             continue
         }
 
@@ -58,16 +58,14 @@ async function main() {
         if (error) {
             const because = /^.+failed custom validation because /
             const message = error.details[0].message.replace(because, "")
-            logger.error(`While validating config for "${module}" module: ${message}`)
+            // prettier-ignore
+            logger.error(`While validating config for ${chalk.yellowBright(module)} module: ${message}`)
             process.exit(0)
         }
         loadedConfig.modules[module] = value
 
-        logger.info(
-            `Loaded module "${module}" with config ${chalk.yellowBright(
-                stringifyObject(value)
-            )}.`
-        )
+        logger.info(`Loaded module ${chalk.yellowBright(module)} with config:`)
+        logger.info(chalk.yellowBright(stringifyObject(value)))
     }
 
     const client = new Client({
