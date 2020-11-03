@@ -2,14 +2,23 @@ import Discord from "discord.js"
 import { Schema } from "joi"
 import Action from "./action/Action"
 
-export default class Module {
-    configSchema: Schema
+export default class Module implements ModuleOptions {
+    configSchema: ConfigSchema
     events: EventList
 
-    constructor(options: { configSchema: Schema; events: EventList }) {
+    constructor(options: ModuleOptions) {
         this.configSchema = options.configSchema
         this.events = options.events
     }
+}
+
+type ConfigSchema = {
+    [key: string]: Schema
+}
+
+type ModuleOptions = {
+    configSchema: ConfigSchema
+    events: EventList
 }
 
 // prettier-ignore
