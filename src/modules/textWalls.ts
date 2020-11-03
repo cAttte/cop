@@ -8,10 +8,10 @@ import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
 
 export default new Module({
-    configSchema: Joi.object({
+    configSchema: {
         maxLines: Joi.number().max(2000),
         delete: boolean
-    }),
+    },
     events: {
         message: createMessageHandler("message"),
         messageUpdate: createMessageHandler("messageUpdate")

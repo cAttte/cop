@@ -14,9 +14,9 @@ const characters = {
 }
 
 export default new Module({
-    configSchema: Joi.object({
+    configSchema: {
         mode: Joi.string().valid("replace", "remove", "prefix")
-    }),
+    },
     events: {
         guildMemberAdd: createMemberHandler("guildMemberAdd"),
         guildMemberUpdate: createMemberHandler("guildMemberUpdate")

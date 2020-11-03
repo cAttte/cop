@@ -1,4 +1,3 @@
-import Joi from "joi"
 import boolean from "../schema/boolean"
 import Discord from "discord.js"
 import { parser } from "discord-markdown"
@@ -8,9 +7,9 @@ import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
 
 export default new Module({
-    configSchema: Joi.object({
+    configSchema: {
         delete: boolean
-    }),
+    },
     events: {
         message: createMessageHandler("message"),
         messageUpdate: createMessageHandler("messageUpdate")
