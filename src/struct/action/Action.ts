@@ -38,7 +38,7 @@ export default abstract class Action implements ActionProperties {
         return this
     }
 
-    abstract execute(): Promise<Discord.Base | Error>
+    abstract execute(muteRole?: Discord.Role): Promise<Discord.Base | Error>
     abstract formatError(message: string): string
     abstract formatSuccess(): string
 }
