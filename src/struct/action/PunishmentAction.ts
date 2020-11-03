@@ -1,5 +1,6 @@
 import chalk from "chalk"
 import Discord from "discord.js"
+import parseDuration from "parse-duration"
 import Action, { ActionProperties } from "./Action"
 
 export default class PunishmentAction extends Action implements PunishmentProperties {
@@ -13,8 +14,46 @@ export default class PunishmentAction extends Action implements PunishmentProper
         this.length = properties.length
     }
 
-    static parsePunishment(input: string): PunishmentProperties[] {
-        return
+    static parsePunishment(input: string | string[]): PunishmentProperties[] | Error {
+        if (typeof input === "string")
+            input = input.split(/ +?(,|;|then|(,|;) +?then) +?/i)
+
+        const parsed: PunishmentProperties[] = []
+        for (const punishment of input) {
+            const properties: PunishmentProperties = { type: null }
+            const typeMatch = punishment.match(/^(mute|kick|ban) +?/i)
+            const type = (typeMatch[1] || "").toLowerCase()
+            if (!["mute", "kick", "ban"].includes(type))
+                return new Error(
+                    `Could not interpret punishment "${chalk.redBright(punishment)}".`
+                )
+            properties.type = <"mute" | "kick" | "ban">type
+
+            const rawLength = punishment
+                .slice(typeMatch[0].length)
+                .trim()
+                .replace(/^for +?/i, "")
+            if (rawLength) {
+                if (type === "kick")
+                    return new Error(`Punishment type "kick" does not accept a length.`)
+
+                const length = permanent.includes(rawLength)
+                    ? Infinity
+                    : parseDuration(rawLength)
+                if (!length)
+                    return new Error(
+                        `Could not interpret length ${chalk.redBright(rawLength)}.`
+                    )
+                properties.length = length
+            } else if (!rawLength && type !== "kick")
+                return new Error(
+                    `Missing punishment length in ${chalk.redBright(punishment)}.`
+                )
+
+            parsed.push(properties)
+        }
+
+        return parsed
     }
 
     static processPunishment(
@@ -56,3 +95,14 @@ type PunishmentProperties = {
     type: "mute" | "kick" | "ban"
     length?: number
 }
+
+const permanent = [
+    "permanent",
+    "permanently",
+    "ever",
+    "infinity",
+    "infinite",
+    "inf",
+    "∞",
+    "until the end of times"
+]
