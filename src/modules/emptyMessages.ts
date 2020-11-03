@@ -8,7 +8,7 @@ import DeleteAction from "../struct/action/DeleteAction"
 
 export default new Module({
     configSchema: {
-        delete: boolean
+        delete: boolean.default(true)
     },
     events: {
         message: createMessageHandler("message"),

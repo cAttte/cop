@@ -1,7 +1,8 @@
 import width from "string-pixel-width"
+import Discord from "discord.js"
 import Joi from "joi"
 import boolean from "../schema/boolean"
-import Discord from "discord.js"
+import punishment from "../schema/punishment"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
@@ -9,8 +10,8 @@ import DeleteAction from "../struct/action/DeleteAction"
 
 export default new Module({
     configSchema: {
-        maxLines: Joi.number().max(2000),
-        delete: boolean
+        maxLines: Joi.number().max(2000).default(12),
+        delete: boolean.default(true)
     },
     events: {
         message: createMessageHandler("message"),
