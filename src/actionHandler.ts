@@ -32,7 +32,7 @@ export default function createActionHandler(client: Client, handlers: Function[]
         }
 
         for (const action of mergedActions) {
-            const result = action.execute()
+            const result = await action.execute()
             if (result instanceof Error) {
                 const message = action.formatError(result.message)
                 logger.warn(`[${action.module}] ${message}`)
