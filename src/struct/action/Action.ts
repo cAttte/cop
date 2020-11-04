@@ -33,8 +33,8 @@ export default abstract class Action implements ActionProperties {
     }
 
     merge(other: this): this {
-        this.module = `${this.module}, ${other.module}`
-        this.reason = `${this.reason}, ${other.reason}`
+        if (this.module !== other.module) this.module = `${this.module}, ${other.module}`
+        if (this.reason !== other.reason) this.reason = `${this.reason}, ${other.reason}`
         return this
     }
 
