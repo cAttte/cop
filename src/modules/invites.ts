@@ -1,14 +1,17 @@
 import Discord from "discord.js"
 import boolean from "../schema/boolean"
+import punishment from "../schema/punishment"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
+import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
 
 export default new Module({
     configSchema: {
         validate: boolean.default(true),
-        delete: boolean.default(true)
+        delete: boolean.default(true),
+        punishment: punishment
     },
     events: {
         message: createMessageHandler("message"),
@@ -19,7 +22,11 @@ export default new Module({
 function createMessageHandler(event: "message" | "messageUpdate") {
     return async function (
         this: Client,
-        config: { validate: boolean; delete: boolean },
+        config: {
+            validate: boolean
+            delete: boolean
+            punishment: PunishmentProperties[]
+        },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
     ): Promise<Action[]> {
@@ -48,6 +55,16 @@ function createMessageHandler(event: "message" | "messageUpdate") {
                 new DeleteAction({
                     module: "Invites",
                     target: message,
+                    reason: "Posted invite" + (invites.length > 1 ? "s" : "")
+                })
+            )
+        }
+
+        if (config.punishment) {
+            actions.push(
+                PunishmentAction.processPunishment(config.punishment, {
+                    module: "Invites",
+                    target: message.member,
                     reason: "Posted invite" + (invites.length > 1 ? "s" : "")
                 })
             )
