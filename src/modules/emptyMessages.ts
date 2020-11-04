@@ -1,14 +1,17 @@
 import boolean from "../schema/boolean"
+import punishment from "../schema/punishment"
 import Discord from "discord.js"
 import { parser } from "discord-markdown"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
+import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
 
 export default new Module({
     configSchema: {
-        delete: boolean.default(true)
+        delete: boolean.default(true),
+        punishment: punishment
     },
     events: {
         message: createMessageHandler("message"),
@@ -19,7 +22,10 @@ export default new Module({
 function createMessageHandler(event: "message" | "messageUpdate") {
     return async function (
         this: Client,
-        config: { delete: boolean },
+        config: {
+            delete: boolean
+            punishment: PunishmentProperties[]
+        },
         oldMessage: Discord.Message,
         newMessage?: Discord.Message
     ): Promise<Action[]> {
@@ -39,6 +45,16 @@ function createMessageHandler(event: "message" | "messageUpdate") {
                 new DeleteAction({
                     module: "EmptyMessages",
                     target: message,
+                    reason: "Empty message"
+                })
+            )
+        }
+
+        if (config.punishment) {
+            actions.push(
+                PunishmentAction.processPunishment(config.punishment, {
+                    module: "EmptyMessages",
+                    target: message.member,
                     reason: "Empty message"
                 })
             )
