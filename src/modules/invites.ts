@@ -1,3 +1,4 @@
+import Joi from "joi"
 import Discord from "discord.js"
 import boolean from "../schema/boolean"
 import punishment from "../schema/punishment"
@@ -10,6 +11,7 @@ import PunishmentAction, { PunishmentProperties } from "../struct/action/Punishm
 export default new Module({
     configSchema: {
         validate: boolean.default(true),
+        validationLimit: Joi.number().integer().allow(Infinity).default(Infinity),
         delete: boolean.default(true),
         punishment: punishment
     },
@@ -24,6 +26,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         this: Client,
         config: {
             validate: boolean
+            validationLimit: number
             delete: boolean
             punishment: PunishmentProperties[]
         },
@@ -40,7 +43,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         while ((matches = inviteRegex.exec(message.content))) invites.push(matches[1])
         if (invites.length === 0) return
 
-        if (config.validate) {
+        if (config.validate && invites.length <= config.validationLimit) {
             let valid = false
             for (const invite of invites) {
                 const fetched = await this.fetchInvite(invite).catch(() => null)
