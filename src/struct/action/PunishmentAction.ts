@@ -20,6 +20,8 @@ export default class PunishmentAction extends Action implements PunishmentProper
 
         const parsed: PunishmentProperties[] = []
         for (const punishment of input) {
+            if (punishment.match(/null|none|nothing/i)) parsed.push({ type: "null" })
+
             const properties: PunishmentProperties = { type: null }
             const typeMatch = punishment.match(/^(mute|kick|ban) +?/i)
             const type = (typeMatch[1] || "").toLowerCase()
