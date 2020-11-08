@@ -34,7 +34,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
         if (!message.content) return
 
-        const inviteRegex = /(?:https?:\/\/)?(?:discord\.gg|discord(?:app)?\.com\/invite)\/([A-Z0-9\-]+)/gi
+        const inviteRegex = /(?:https?:\/\/)?(?:discord\.(?:gg|io|me|li)|discord(?:app)?\.com\/invite)\/([A-Z0-9\-]+)/gi
         const invites = []
         let matches: RegExpExecArray
         while ((matches = inviteRegex.exec(message.content))) invites.push(matches[1])
