@@ -4,7 +4,7 @@ import parseDuration from "parse-duration"
 import Action, { ActionProperties } from "./Action"
 
 export default class PunishmentAction extends Action implements PunishmentProperties {
-    type: "mute" | "kick" | "ban"
+    type: "null" | "mute" | "kick" | "ban"
     length?: number
     target: Discord.GuildMember
 
@@ -67,6 +67,8 @@ export default class PunishmentAction extends Action implements PunishmentProper
     async execute(muteRole: Discord.Role): Promise<Discord.Base | Error> {
         try {
             switch (this.type) {
+                case "null":
+                    return this.target
                 case "mute":
                     return await this.target.roles.add(muteRole)
                 case "kick":
@@ -86,7 +88,8 @@ export default class PunishmentAction extends Action implements PunishmentProper
     }
 
     formatSuccess(): string {
-        const pastAction = { mute: "Muted", kick: "Kicked", ban: "Banned" }[this.type]
+        // prettier-ignore
+        const pastAction = { null: "Did nothing to", mute: "Muted", kick: "Kicked", ban: "Banned" }[this.type]
         const targetTag = chalk.blueBright(this.target.user.tag)
         const targetID = chalk.blueBright(this.target.user.id)
         const formattedLength = this.formatLength()
@@ -104,7 +107,7 @@ export default class PunishmentAction extends Action implements PunishmentProper
 }
 
 export type PunishmentProperties = {
-    type: "mute" | "kick" | "ban"
+    type: "null" | "mute" | "kick" | "ban"
     length?: number
 }
 
