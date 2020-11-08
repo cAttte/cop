@@ -44,7 +44,10 @@ function createMessageHandler(event: "message" | "messageUpdate") {
             let valid = false
             for (const invite of invites) {
                 const fetched = await this.fetchInvite(invite).catch(() => null)
-                if (fetched) valid = true
+                if (fetched) {
+                    valid = true
+                    break
+                }
             }
             if (!valid) return
         }
