@@ -6,12 +6,12 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 
 ## Installation
 
-Clone the repo to your computer with **[git][]**:
+Clone the repo to your computer with [git][]:
 
     $ git clone https://github.com/cAttte/cop.git
     $ cd cop
 
-Install the dependencies with **[npm][]** (which comes with node):
+Install the dependencies with [npm][] (which comes with node):
 
     $ npm install
 
