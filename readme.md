@@ -6,8 +6,8 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 
 ## Docs
 
--   [🔨 Setup][docs/setup]
--   [🤖 Start][docs/start]
+-   `🔨` [Setup][docs/setup]
+-   `🤖` [Start][docs/start]
 
 <!-- references -->
 
