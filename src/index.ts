@@ -13,6 +13,7 @@ import { Schema } from "joi"
 import Module from "./struct/Module"
 import emptyMessages from "./modules/emptyMessages"
 import invites from "./modules/invites"
+import links from "./modules/links"
 import nickHoist from "./modules/nickHoist"
 import textWalls from "./modules/textWalls"
 const modules = { emptyMessages, invites, nickHoist, textWalls }
