@@ -28,7 +28,7 @@
     "dependencies": {
         "chalk": "^4.1.0",
         "discord-markdown": "^2.4.1",
-        "discord.js": "^12.3.1",
+        "discord.js": "^12.4.1",
         "fanum": "^1.0.0",
         "joi": "^17.2.1",
         "node-fetch": "^2.6.1",
