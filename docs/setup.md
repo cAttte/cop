@@ -13,10 +13,6 @@ Build the code to pure JavaScript:
 
     $ npm run build
 
-If you're going to make changes to the code, you can _watch_ and build on every file change:
-
-    $ npm run watch
-
 <!-- references -->
 
 [git]: https://git-scm.com/
