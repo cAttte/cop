@@ -8,10 +8,10 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 
 -   `🔨` [Setup][docs/setup]
 -   `🏁` [Start][docs/start]
--   `🔧` [Development][docs/development]
+-   `🔧` [Develop][docs/develop]
 
 <!-- references -->
 
 [docs/setup]: https://github.com/cAttte/cop/blob/master/docs/setup.md
 [docs/start]: https://github.com/cAttte/cop/blob/master/docs/start.md
-[docs/development]: https://github.com/cAttte/cop/blob/master/docs/development.md
+[docs/develop]: https://github.com/cAttte/cop/blob/master/docs/develop.md
