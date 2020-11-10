@@ -1,4 +1,4 @@
-# 🤖 Start
+# 🏁 Start
 
 Start the bot with the script:
 
