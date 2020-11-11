@@ -6,7 +6,8 @@
     "scripts": {
         "build": "node_modules/.bin/tsc",
         "watch": "node_modules/.bin/tsc --watch",
-        "start": "node dist/index.js"
+        "start": "node dist/index.js",
+        "update-tlds": "node scripts/updateTLDs.js"
     },
     "repository": "cAttte/cop",
     "keywords": [
