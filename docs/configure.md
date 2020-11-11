@@ -21,7 +21,7 @@ For now, cop does not setup its permissions, and, when not specified, you won't 
 
 -   **Type:** `string`
 
-### modules
+## modules
 
 The configuration for the modules you wish to enable. Check out the [Modules][] section to see all of them, and their possible setttings.
 
