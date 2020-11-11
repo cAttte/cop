@@ -6,11 +6,14 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 
 ## Docs
 
+The documentation is still in the process of being written :)
+
 -   `🔨` [Setup][docs/setup]
 -   `🔧` [Configure][docs/configure]
     -   `🧩` [Modules][docs/modules]
 -   `🏁` [Start][docs/start]
 -   `💻` [Develop][docs/develop]
+    -   `🤝` [Contribute][docs/contribute]
 
 <!-- references -->
 
@@ -19,3 +22,4 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 [docs/modules]: https://github.com/cAttte/cop/blob/master/docs/modules.md
 [docs/start]: https://github.com/cAttte/cop/blob/master/docs/start.md
 [docs/develop]: https://github.com/cAttte/cop/blob/master/docs/develop.md
+[docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
