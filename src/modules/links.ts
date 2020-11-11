@@ -42,11 +42,10 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         while ((matches = urlRegex.exec(message.content))) links.push(matches[1])
         if (config.validate) {
             links = links.filter(url => {
-                const urlTLDs = url.match(/(\.[a-zA-Z0-9]{2,6}){1,2}$/)
-                if (!urlTLDs) return false
-                const uppercaseTLDs = urlTLDs.map(tld => tld.toUpperCase())
-                if (uppercaseTLDs.every(tlds.includes)) return true
-                return false
+                const tld = url.match(/\.[a-z0-9]{2,6}$/i)?.[0]
+                if (!tld) return false
+                else if (tlds.includes(tld.toLowerCase())) return true
+                else return false
             })
         }
         if (links.length === 0) return
