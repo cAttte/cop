@@ -69,7 +69,7 @@ const eventList = {
 
 Actions are little objects with instructions embedded into them. For example, you could have a deletion action (`DeleteAction`) that tells cop to delete a certain message by a certain user!
 
-_But... why?_ Why be so verbose? Couldn't you just let the modules execute actions by themselves? (ie, `message.delete()`). Yes! But, what if I were to send a message that said `https://shit.com`, while having both the `links` and `profanity` modules enabled? Or a 15-line blank text-wall, while having both the `text walls` and `empty messages` modules enabled? Eureka! That will cause an error, as two modules will be trying to delete the same message.
+_But... why?_ Why be so verbose? Couldn't you just let the modules execute actions by themselves? (ie, `message.delete()`). Yes! But, what if I were to send a message that said `https://sh.it`, while having both the `links` and `profanity` modules enabled? Or a 15-line blank text-wall, while having both the `text walls` and `empty messages` modules enabled? Eureka! That will cause an error, as two modules will be trying to delete the same message.
 
 The "main" [action handler][action-handler] will handle duplicated actions for you. It will also print neat logs, so you don't have to worry about that!
 
