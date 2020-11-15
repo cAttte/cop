@@ -13,7 +13,7 @@ cop's development uses a superset of the [Conventional Commits][conventional-com
 -   **docs:** A change to the documentation.
 -   **chore:** A non-code change, normally done to configuration files or datasets.
 
-Conventional Commits work can also include a scope in parentheses, after the type. This scope specifies which part of the codebase the commit applies to.
+Conventional Commits can also include a scope in parentheses, after the type. This scope specifies which part of the codebase the commit applies to.
 
 For example, if you're updating a dependency you could write the commit type as `chore(deps):`, if you're editing this file, `docs(contribute):`, or if you're fixing a bug on the main file, `fix(index):`. If the commit applies to many files, you can use the `(*)` scope.
 
