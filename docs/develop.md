@@ -1,6 +1,6 @@
 # 💻 Develop
 
-This section of the docs will show you a lot on how cop works; whether you want to build a module for yourself or contribute directly to cop, this is for you!
+This section of the docs will show you a lot on how cop works; whether you want to build a module for yourself or contribute directly to cop, this is for you! If you're exercising the latter, also check out the [Contribute][docs/contribute] section :)
 
 ## Scripts
 
@@ -126,6 +126,7 @@ The [`util/`][util] directory contains a bunch of utility functions, which may o
 
 <!-- references -->
 
+[docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
 [tsconfig]: https://github.com/cAttte/cop/blob/master/tsconfig.json
 [joi]: https://joi.dev/
 [action-handler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
