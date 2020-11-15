@@ -1,5 +1,7 @@
 # 💻 Develop
 
+This section of the docs will show you a lot on how cop works; whether you want to build a module for yourself or contribute directly to cop, this is for you!
+
 ## Scripts
 
 ### build
