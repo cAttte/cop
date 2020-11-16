@@ -39,7 +39,7 @@ function createMessageHandler(event: "message" | "messageUpdate") {
         const emojiCount =
             Twemoji.parse(message.content).length +
             (message.content.match(/<a?:[_a-zA-Z0-9]{2,32}:\d{18}>/g)?.length || 0)
-        if (emojiCount < config.limit) return
+        if (emojiCount <= config.limit) return
 
         const actions: Action[] = []
         if (config.delete) {
