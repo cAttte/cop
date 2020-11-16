@@ -2,6 +2,9 @@ token: discord_token_goes_here
 mute role: role_id_goes_here
 
 modules:
+    emojis:
+        limit: 12
+        delete: yes
     empty messages:
         delete: yes
     invites:
