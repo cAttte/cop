@@ -8,7 +8,7 @@ ok cop. The minimalistic auto-moderation Discord bot. :tm:
 
 The documentation is still in the process of being written :)
 
--   `🔨` [Setup][docs/setup]
+-   `💾` [Setup][docs/setup]
 -   `⚙️` [Configure][docs/configure]
     -   `🧩` [Modules][docs/modules]
 -   `🏁` [Start][docs/start]

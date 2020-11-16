@@ -1,4 +1,4 @@
-# 🔨 Setup
+# 💾 Setup
 
 Clone the repo to your computer with [git][]:
 
