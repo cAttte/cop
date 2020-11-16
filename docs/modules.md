@@ -1,6 +1,6 @@
 # 🧩 Modules
 
-This section lists all of the default modules provided by cop. If you feel like creating your own, check out the [Develop][docs/deveop] section!
+This section lists all of the default modules provided by cop. If you feel like creating your own, check out the [Develop][docs/develop] section!
 
 -   [Empty messages](#empty-messages)
 -   [Invites](#invites)
