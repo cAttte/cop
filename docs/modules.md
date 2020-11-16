@@ -2,11 +2,37 @@
 
 This section lists all of the default modules provided by cop. If you feel like creating your own, check out the [Develop][docs/develop] section!
 
+-   [Emojis](#emojis)
 -   [Empty messages](#empty-messages)
 -   [Invites](#invites)
 -   [Links](#links)
 -   [Nick hoist](#nick-hoist)
 -   [Text walls](#text-walls)
+
+## emojis
+
+This module filters the exaggerated usage of emojis (or any usage, if you're into that). It detects both default (Unicode) and custom (Discord) emojis.
+
+### limit
+
+The maximum number of emojis there can be in a message before it is considered 'spam' (yes, it can be `0`).
+
+-   **Type:** `number` (max. `2000`)
+-   **Default:** `12`
+
+### delete
+
+Whether to delete the message.
+
+-   **Type:** [`boolean`][types/boolean]
+-   **Default:** `yes`
+
+### punishment
+
+The punishment to execute on the user.
+
+-   **Type:** [`Punishment`][types/punishment]
+-   **Default:** `none`
 
 ## empty messages
 
