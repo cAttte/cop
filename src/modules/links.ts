@@ -1,3 +1,4 @@
+import Joi from "joi"
 import fetch from "node-fetch"
 import Discord from "discord.js"
 import Client from "../struct/Client"
@@ -11,6 +12,7 @@ import tlds from "../data/topLevelDomains"
 export default new Module({
     configSchema: {
         validate: boolean,
+        validationLimit: Joi.number().integer().allow(Infinity).default(Infinity),
         delete: boolean
     },
     events: {
