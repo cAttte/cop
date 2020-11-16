@@ -15,6 +15,11 @@ The documentation is still in the process of being written :)
 -   `💻` [Develop][docs/develop]
     -   `🤝` [Contribute][docs/contribute]
 
+## Info
+
+-   `⚖️` [License][license]
+-   `✨` [Changelog][changelog]
+
 <!-- references -->
 
 [docs/setup]: https://github.com/cAttte/cop/blob/master/docs/setup.md
@@ -23,3 +28,5 @@ The documentation is still in the process of being written :)
 [docs/start]: https://github.com/cAttte/cop/blob/master/docs/start.md
 [docs/develop]: https://github.com/cAttte/cop/blob/master/docs/develop.md
 [docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
+[license]: https://github.com/cAttte/cop/blob/master/license
+[changelog]: https://github.com/cAttte/cop/blob/master/changelog
