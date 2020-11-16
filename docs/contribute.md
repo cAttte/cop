@@ -9,7 +9,7 @@ cop's development uses a superset of the [Conventional Commits][conventional-com
 -   **fix:** A bug fix.
 -   **feat:** A new feature.
 -   **refactor:** A code change that does not add or fix anything.
--   **style:** A code change that only applies to code style (e.g., comments).
+-   **style:** A code change that only applies to code style (eg, comments).
 -   **docs:** A change to the documentation.
 -   **chore:** A non-code change, normally done to configuration files or datasets.
 
@@ -17,7 +17,7 @@ Conventional Commits can also include a scope in parentheses, after the type. Th
 
 For example, if you're updating a dependency you could write the commit type as `chore(deps):`, if you're editing this file, `docs(contribute):`, or if you're fixing a bug on the main file, `fix(index):`. If the commit applies to many files, you can use the `(*)` scope.
 
-The actual commit message (after the commit type and scope) must start with lowercase, be in present tense and imperative mood (e.g., `change something`, not `changed something` or `changes something`). When in doubt, check cop's [commit history][history]!
+The actual commit message (after the commit type and scope) must start with lowercase, be in present tense and imperative mood (eg, `change something`, not `changed something` or `changes something`). When in doubt, check cop's [commit history][history]!
 
 Your Pull Request is most likely not going to be rejected because of your commit messages. These are just guidelines, not rules.
 
