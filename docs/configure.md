@@ -1,4 +1,4 @@
-# 🔧 Configure
+# ⚙️ Configure
 
 The configuration file is cop's most essential node of customization; as cop's main premise is minimalism, it doesn't have any commands. The configuration uses [YAML][], and is stored at the [`config.yml`][config.yml] file on the root directory.
 
