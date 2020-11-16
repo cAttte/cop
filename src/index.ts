@@ -11,13 +11,14 @@ import Client from "./struct/Client"
 
 import { Schema } from "joi"
 import Module from "./struct/Module"
+import autoroles from "./modules/autoroles"
 import emojis from "./modules/emojis"
 import emptyMessages from "./modules/emptyMessages"
 import invites from "./modules/invites"
 import links from "./modules/links"
 import nickHoist from "./modules/nickHoist"
 import textWalls from "./modules/textWalls"
-const modules = { emojis, emptyMessages, invites, links, nickHoist, textWalls }
+const modules = { autoroles, emojis, emptyMessages, invites, links, nickHoist, textWalls }
 
 const loadedConfig: { muteRole?: Discord.Role; modules: any } = { modules: {} }
 
