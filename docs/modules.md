@@ -15,72 +15,63 @@ This module filters the exaggerated usage of emojis (or any usage, if you're int
 
 ### limit
 
-The maximum number of emojis there can be in a message before it is considered 'spam' (yes, it can be `0`).
-
+-   The maximum number of emojis there can be in a message before it is considered 'spam' (yes,&nbsp;it&nbsp;can&nbsp;be&nbsp;`0`).
 -   **Type:** `number` (max. `2000`)
 -   **Default:** `12`
 
 ### delete
 
-Whether to delete the message.
-
+-   Whether to delete the message.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
 ## empty messages
 
-This module filters empty messages, detecting several blank characters (` `, `឵`, `​`, `\n`...), and strategies (like using markdown).
+This module filters empty messages, detecting several blank characters (` `,&nbsp;`឵`,&nbsp;`​`,&nbsp;`\n`...), and strategies (like using markdown).
 
 ### delete
 
-Whether to delete the message.
-
+-   Whether to delete the message.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
 ## invites
 
-This module will filter server invites, detecting several domains (`discord.gg`, `discord.com/invite`), including vanity domains (`discord.io`, `discord.me`, `discord.li`...).
+This module will filter server invites, detecting several domains (`discord.gg`,&nbsp;`discord.com/invite`), including vanity domains (`discord.io`,&nbsp;`discord.me`,&nbsp;`discord.li`...).
 
 ### validate
 
-Whether to check the invites and make sure they are valid before acting upon them.
-
+-   Whether to check the invites and make sure they are valid before acting upon them.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### validation limit
 
-Used in conjunction with `validate` true. The maximum number of invites there can be in a message before stopping validation (and counting the invites as valid either way). Useful if you don't want spammers to post 50 invites per message and get banned from Discord's API.
-
+-   Used in conjunction with `validate`. The maximum number of invites there can be in a message before stopping validation (and counting the invites as valid either way). Useful if you don't want spammers to post 50 invites per message and get you banned from Discord's API.
 -   **Type:** `number`
 -   **Default:** `Infinity` (no limit)
 
 ### delete
 
-Whether to delete the message.
-
+-   Whether to delete the message.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
@@ -90,15 +81,13 @@ This module filters links. Nothing more and nothing less.
 
 ### delete
 
-Whether to delete the message.
-
+-   Whether to delete the message.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
@@ -108,15 +97,13 @@ This module filters usernames or nicknames starting with characters for the purp
 
 ### mode
 
-How to unhoist nicknames. If `replace`, the hoisting characters will be replaced with similar-looking characters that do not hoist (eg, `! name` → `ⵑ name`). If `remove`, the hoisting characters will be removed (eg, `! name` → `name`). If `prefix`, the nicknames will be prefixed with an [invisible character][u17b5] (eg, `! name` → `឵! name`), which will move the member to the bottom of the list.
-
+-   How to unhoist nicknames. If `replace`, the hoisting characters will be replaced with similar-looking characters that do not hoist (eg,&nbsp;`! name`&nbsp;→&nbsp;`ⵑ name`). If `remove`, the hoisting characters will be removed (eg,&nbsp;`! name`&nbsp;→&nbsp;`name`). If `prefix`, the nicknames will be prefixed with an [invisible character][u17b5] (eg,&nbsp;`! name`&nbsp;→&nbsp;`឵! name`), which will move the member to the bottom of the list.
 -   **Type:** `replace` or `remove` or `prefix`
 -   **Default:** `replace`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
@@ -126,22 +113,19 @@ This module filters text walls; messages that occupy big portions of other users
 
 ### max lines
 
-The maximum number of lines in a message before it is considered a text wall.
-
+-   The maximum number of lines in a message before it is considered a text wall.
 -   **Type:** `number` (max. `2000`)
 -   **Default:** `12`
 
 ### delete
 
-Whether to delete the message.
-
+-   Whether to delete the message.
 -   **Type:** [`boolean`][types/boolean]
 -   **Default:** `yes`
 
 ### punishment
 
-The punishment to execute on the user.
-
+-   The punishment to execute on the user.
 -   **Type:** [`Punishment`][types/punishment]
 -   **Default:** `none`
 
