@@ -2,12 +2,33 @@
 
 This section lists all of the default modules provided by cop. If you feel like creating your own, check out the [Develop][docs/develop] section!
 
+-   [Autoroles](#autoroles)
 -   [Emojis](#emojis)
 -   [Empty messages](#empty-messages)
 -   [Invites](#invites)
 -   [Links](#links)
 -   [Nick hoist](#nick-hoist)
 -   [Text walls](#text-walls)
+
+## autoroles
+
+This module gives certain roles to new users as soon as they join. Useful if you want to be annoying and spam-ping your poor, poor members with announcements they don't care about. Or, if you want to give them pretty colors. Whatever floats your boat.
+
+### roles
+
+-   The list of role (IDs) to give. You can specify an array/list of IDs if you're using cop in a single server, or a map/object mapping server IDs to their autorole IDs. For example:
+
+```yml
+roles: ["720990739961741364", "707403823920054333"] # role IDs
+# or
+roles:
+    690908396404080650: # server ID
+        - "720990739961741364" # role ID
+        - "707403823920054333" # role ID
+```
+
+-   **Type:** `array<string>` or `object<string, array<string>>`
+-   **Default:** `none`
 
 ## emojis
 
