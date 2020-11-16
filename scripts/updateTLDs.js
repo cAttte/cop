@@ -21,7 +21,7 @@ async function main() {
         .replace(/\n {8}/g, "\n")
         .slice(1)
 
-    await fs.writeFile(path.join(__dirname, "../src/data/tlds.ts"), content)
+    await fs.writeFile(path.join(__dirname, "../src/data/topLevelDomains.ts"), content)
     console.log(`Version ${version}`)
 }
 

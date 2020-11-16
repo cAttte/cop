@@ -6,7 +6,7 @@ import Module from "../struct/Module"
 import Action from "../struct/action/Action"
 import DeleteAction from "../struct/action/DeleteAction"
 import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
-import tlds from "../data/tlds"
+import tlds from "../data/topLevelDomains"
 
 export default new Module({
     configSchema: {
