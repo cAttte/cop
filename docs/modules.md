@@ -2,6 +2,12 @@
 
 This section lists all of the default modules provided by cop. If you feel like creating your own, check out the [Develop][docs/deveop] section!
 
+-   [Empty messages](#empty-messages)
+-   [Invites](#invites)
+-   [Links](#links)
+-   [Nick hoist](#nick-hoist)
+-   [Text walls](#text-walls)
+
 ## empty messages
 
 This module filters empty messages, detecting several blank characters (` `, `឵`, `​`, `\n`...), and strategies (like using markdown).
