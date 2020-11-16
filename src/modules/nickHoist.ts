@@ -6,14 +6,7 @@ import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import NickAction from "../struct/action/NickAction"
 import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
-
-const characters = {
-    "!": "ⵑ",
-    '"': "ʺ",
-    "'": "ʹ",
-    ".": "․",
-    "#": "ⵌ"
-}
+import characters from "../data/hoistingCharacters"
 
 export default new Module({
     configSchema: {
