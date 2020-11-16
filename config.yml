@@ -2,6 +2,21 @@ token: discord_token_goes_here
 mute role: role_id_goes_here
 
 modules:
+    empty messages:
+        delete: yes
+    invites:
+        validate: true
+        validation limit: .inf
+        delete: true
+    links:
+        validate: false
+        validation limit: .inf
+        delete: true
+    nick hoist:
+        mode: replace
+    text walls:
+        max lines: 12
+        delete: yes
     # profanity:
     #     custom: []
     #     punishment:
@@ -11,25 +26,8 @@ modules:
     #         swears: null
     #         insults: delete message
     #         slurs: kick user
-    invites:
-        validate: true
-        validation limit: 3
-        delete: true
-    links:
-        clickable: true
-        validate: false
-        validation limit: 3
-        delete: true
     # pings:
     #     spam ping limit: 3
     #     punishment:
     #         spam ping: kick user
     #         false ping: delete message
-    text walls:
-        max lines: 12
-        delete: yes
-    empty messages:
-        delete: yes
-    nick hoist:
-        mode: replace
-        punishment: mute for 12h
