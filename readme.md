@@ -18,7 +18,7 @@ The documentation is still in the process of being written :)
 ## Info
 
 -   `⚖️` [License][license]
--   `✨` [Changelog][changelog]
+-   `🕒` [Changelog][changelog]
 
 <!-- references -->
 
