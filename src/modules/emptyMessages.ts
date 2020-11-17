@@ -4,66 +4,32 @@ import Discord from "discord.js"
 import { parser } from "discord-markdown"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
-import Action from "../struct/action/Action"
-import DeleteAction from "../struct/action/DeleteAction"
-import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/action/PunishmentAction"
 import characters from "../data/blankCharacters"
+import createMessageMatcher from "../util/createMessageMatcher"
 
 export default new Module({
     configSchema: {
         delete: boolean.default(true),
         punishment: punishment
     },
-    events: {
-        message: createMessageHandler("message"),
-        messageUpdate: createMessageHandler("messageUpdate")
-    }
+    events: createMessageMatcher({
+        module: "EmptyMessages",
+        reason: "Empty message",
+        async matcher(
+            this: Client,
+            config: { delete: boolean; punishment: PunishmentProperties },
+            message: Discord.Message
+        ) {
+            const charRegex = new RegExp("[" + characters.join("") + "]", "g")
+            const parsed = parser(message.content)
+            const text = astToText(parsed).trim()
+            const stripped = text.replace(charRegex, "")
+
+            return stripped === ""
+        }
+    })
 })
-
-function createMessageHandler(event: "message" | "messageUpdate") {
-    return async function (
-        this: Client,
-        config: {
-            delete: boolean
-            punishment: PunishmentProperties[]
-        },
-        oldMessage: Discord.Message,
-        newMessage?: Discord.Message
-    ): Promise<Action[]> {
-        const message = event === "message" ? oldMessage : newMessage
-        if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
-        if (!message.content) return
-
-        const charRegex = new RegExp("[" + characters.join("") + "]", "g")
-        const parsed = parser(message.content)
-        const text = astToText(parsed).trim()
-        const stripped = text.replace(charRegex, "")
-        if (stripped !== "") return
-
-        const actions: Action[] = []
-        if (config.delete) {
-            actions.push(
-                new DeleteAction({
-                    module: "EmptyMessages",
-                    target: message,
-                    reason: "Empty message"
-                })
-            )
-        }
-
-        if (config.punishment) {
-            actions.push(
-                PunishmentAction.processPunishment(config.punishment, {
-                    module: "EmptyMessages",
-                    target: message.member,
-                    reason: "Empty message"
-                })
-            )
-        }
-
-        return actions
-    }
-}
 
 type Token = {
     type: string
