@@ -128,6 +128,10 @@ The [`schema/`][schema] directory contains several custom [joi][] schemas, such 
 
 The [`util/`][util] directory contains a bunch of utility functions, which may or may not be useful in your case.
 
+### index
+
+The [`index`][index] or main file is the _heart_ of cop. It will load the config from the `config.yml` file, validate the config for each module, register all of the event handlers, login to Discord, and everything else a bot must do on start-up.
+
 ### actionHandler
 
 The [`createActionHandler()`][actionhandler] function receives the event handlers provided by all of the modules for a certain event (eg, all `message` event handlers by the `invites`, `links`, etc. modules) and returns a single function which will call them all on each event emission. After calling these, it will decide which actions returned by the event handlers will be executed (ie, by merging duplicate actions and ignoring conflicting ones).
@@ -149,4 +153,5 @@ Essentially, the returned function is a "master" event handler; an event handler
 [schema/punishment]: https://github.com/cAttte/cop/blob/master/src/schema/punishment.ts
 [schema/snowflake]: https://github.com/cAttte/cop/blob/master/src/schema/snowflake.ts
 [util]: https://github.com/cAttte/cop/blob/master/src/util
+[index]: https://github.com/cAttte/cop/blob/master/src/index.ts
 [actionhandler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
