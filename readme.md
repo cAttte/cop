@@ -29,4 +29,4 @@ The documentation is still in the process of being written :)
 [docs/develop]: https://github.com/cAttte/cop/blob/master/docs/develop.md
 [docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
 [license]: https://github.com/cAttte/cop/blob/master/license
-[changelog]: https://github.com/cAttte/cop/blob/master/changelog
+[changelog]: https://github.com/cAttte/cop/blob/master/changelog.md
