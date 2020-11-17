@@ -1,4 +1,5 @@
 import Discord from "discord.js"
+import { EventList } from "../struct/Module"
 import Action from "../struct/action/Action"
 import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
 import DeleteAction from "../struct/action/DeleteAction"
@@ -9,7 +10,9 @@ type MessageMatcherProperties = {
     reason: string
 }
 
-export default function createMessageMatcher(properties: MessageMatcherProperties) {
+export default function createMessageMatcher(
+    properties: MessageMatcherProperties
+): EventList {
     return {
         message: createMessageHandler("message", properties),
         messageUpdate: createMessageHandler("messageUpdate", properties)
@@ -34,7 +37,8 @@ function createMessageHandler(
         if (!message.content) return
 
         const actions: Action[] = []
-        const matches = await properties.matcher(config, message)
+        const matcher: typeof properties.matcher = properties.matcher.bind(this)
+        const matches = await matcher(config, message)
 
         if (matches) {
             if (config.delete) {
