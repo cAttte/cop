@@ -138,6 +138,10 @@ The [`createActionHandler()`][actionhandler] function receives the event handler
 
 Essentially, the returned function is a "master" event handler; an event handler which calls multiple other event handlers.
 
+### logger
+
+The [`logger`][logger] file exports a [winston][] Logger object (who would've thought?!), which will log to the console with pretty colors, and to the `logs/` directory. You shouldn't import this file directly (unless you really want to...), but instead use the Client#logger property.
+
 <!-- references -->
 
 [docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
@@ -155,3 +159,5 @@ Essentially, the returned function is a "master" event handler; an event handler
 [util]: https://github.com/cAttte/cop/blob/master/src/util
 [index]: https://github.com/cAttte/cop/blob/master/src/index.ts
 [actionhandler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
+[logger]: https://github.com/cAttte/cop/blob/master/src/logger.ts
+[winston]: https://github.com/winstonjs/winston#readme
