@@ -2,6 +2,21 @@
 
 This section of the docs will show you a lot on how cop works; whether you want to build a module for yourself or contribute directly to cop, this is for you! If you're exercising the latter, also check out the [Contribute][docs/contribute] section :)
 
+-   [Scripts](#scripts)
+    -   [build](#build)
+    -   [watch](#watch)
+    -   [start](#start)
+-   [API](#api)
+    -   [Module](#module)
+    -   [Action](#action)
+-   [Internals](#internals)
+    -   [data](#data)
+    -   [schema](#schema)
+    -   [util](#util)
+    -   [index](#index)
+    -   [actionHandler](#actionhandler)
+    -   [logger](#logger)
+
 ## Scripts
 
 ### build
