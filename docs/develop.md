@@ -165,6 +165,41 @@ The `schema/` directory contains several custom [joi][] schemas, such as [lenien
 
 The `util/` directory contains a bunch of utility functions, which may or may not be useful in your case.
 
+#### [🡥][util/createmessagematcher] createMessageMatcher()
+
+This is probably the most _utile_ utility function, so it get its own section! `createMessageMatcher()` is useful if you're making a module that handles messages (for example, a profanity filter). It handles the boilerplate of parsing punishment, instantiating a `DeleteAction`, and `message` and `messageUpdate` events. You just pass it a `matcher` function that returns a `boolean`—representing whether the message matches your filter—and it will return an `EventList`. For example:
+
+```ts
+export default new Module({
+    configSchema: {
+        delete: boolean.default(true),
+        punishment: punishment
+    },
+    eventList: createMessageMatcher({
+        module: "DeleteAllMessages",
+        reason: "All messages must be exterminated.",
+        matcher(
+            this: Client,
+            config: { delete: boolean; punishment: PunishmentProperties }
+        ) {
+            return true // message will be deleted
+            return false // message will not be deleted
+        }
+    })
+})
+```
+
+If you want to have more events in your module, you can use object destructuring:
+
+```ts
+const eventList = {
+    ...createMessageMatcher(/* ... */),
+    guildMemberAdd(/* ... */) {
+        /* ... */
+    }
+}
+```
+
 ### [🡥][index] index
 
 The `index` or main file is the _heart_ of cop. It will load the config from the `config.yml` file, validate the config for each module, register all of the event handlers, login to Discord, and everything else a bot must do on start-up.
@@ -200,6 +235,7 @@ The `logger` file exports a [winston][] Logger object (who would've thought?!), 
 [schema/punishment]: https://github.com/cAttte/cop/blob/master/src/schema/punishment.ts
 [schema/snowflake]: https://github.com/cAttte/cop/blob/master/src/schema/snowflake.ts
 [util]: https://github.com/cAttte/cop/blob/master/src/util
+[util/createmessagematcher]: https://github.com/cAttte/cop/blob/master/src/util/createMessageMatcher.ts
 [index]: https://github.com/cAttte/cop/blob/master/src/index.ts
 [actionhandler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
 [logger]: https://github.com/cAttte/cop/blob/master/src/logger.ts
