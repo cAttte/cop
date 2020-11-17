@@ -116,6 +116,10 @@ class SendAction extends Action {
 
 cop's inner workings are also documented. This is useful if you're developing cop directly, or if your custom module needs some advanced extra-spicy stuff.
 
+### data
+
+The [`data/`][data] directory contains datasets used by the built-in modules, such as a TLD list, character/replacement lists, etc.
+
 ### schema
 
 The [`schema/`][schema] directory contains several custom [joi][] schemas, such as [lenient booleans][schema/boolean], [punishment parsers][schema/punishment], and [Discord IDs][schema/snowflake]. Joi is used for config validation, so use these whenever possible in your module's config.
@@ -133,6 +137,7 @@ The [`util/`][util] directory contains a bunch of utility functions, which may o
 [djs-events]: https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelCreate
 [djs-base]: https://discord.js.org/#/docs/main/stable/class/Base
 [promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[data]: https://github.com/cAttte/cop/blob/master/src/data
 [schema]: https://github.com/cAttte/cop/blob/master/src/schema
 [schema/boolean]: https://github.com/cAttte/cop/blob/master/src/schema/boolean.ts
 [schema/punishment]: https://github.com/cAttte/cop/blob/master/src/schema/punishment.ts
