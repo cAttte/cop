@@ -6,7 +6,7 @@ export default function createActionHandler(client: Client, handlers: Function[]
     return async function actionHandler(...data: any[]) {
         let actions: Action[] = []
         for (const handler of handlers) {
-            const result = await handler.bind(client)(...data)
+            const result = await (<typeof handler>handler.bind(client))(...data)
             if (result) actions = actions.concat(result)
         }
 
