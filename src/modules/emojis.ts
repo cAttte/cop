@@ -1,13 +1,10 @@
+import Joi from "joi"
 import boolean from "../schema/boolean"
 import punishment from "../schema/punishment"
 import * as Twemoji from "twemoji-parser"
 import Discord from "discord.js"
 import Module from "../struct/Module"
-import Client from "../struct/Client"
-import Action from "../struct/action/Action"
-import DeleteAction from "../struct/action/DeleteAction"
-import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
-import Joi from "joi"
+import createMessageMatcher from "../util/createMessageMatcher"
 
 export default new Module({
     configSchema: {
@@ -15,53 +12,16 @@ export default new Module({
         delete: boolean.default(true),
         punishment: punishment
     },
-    events: {
-        message: createMessageHandler("message"),
-        messageUpdate: createMessageHandler("messageUpdate")
-    }
-})
+    events: createMessageMatcher({
+        matcher(config: any, message: Discord.Message) {
+            const unicodeEmoji = Twemoji.parse(message.content)
+            const discordEmoji = message.content.match(/<a?:[_a-zA-Z0-9]{2,32}:\d{18}>/g)
+            const emojiCount = unicodeEmoji.length + (discordEmoji?.length || 0)
 
-function createMessageHandler(event: "message" | "messageUpdate") {
-    return async function (
-        this: Client,
-        config: {
-            limit: number
-            delete: boolean
-            punishment: PunishmentProperties[]
+            if (emojiCount > config.limit) return true
+            else return false
         },
-        oldMessage: Discord.Message,
-        newMessage?: Discord.Message
-    ): Promise<Action[]> {
-        const message = event === "message" ? oldMessage : newMessage
-        if (event === "messageUpdate" && oldMessage.content === newMessage.content) return
-        if (!message.content) return
-
-        const emojiCount =
-            Twemoji.parse(message.content).length +
-            (message.content.match(/<a?:[_a-zA-Z0-9]{2,32}:\d{18}>/g)?.length || 0)
-        if (emojiCount <= config.limit) return
-
-        const actions: Action[] = []
-        if (config.delete) {
-            actions.push(
-                new DeleteAction({
-                    module: "Emojis",
-                    target: message,
-                    reason: "Emoji spam"
-                })
-            )
-        }
-
-        if (config.punishment) {
-            actions.push(
-                PunishmentAction.processPunishment(config.punishment, {
-                    module: "Emojis",
-                    target: message.member,
-                    reason: "Emoji spam"
-                })
-            )
-        }
-
-        return actions
-    }
-}
+        module: "Emojis",
+        reason: "Emoji spam"
+    })
+})
