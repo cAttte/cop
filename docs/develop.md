@@ -41,7 +41,7 @@ Start the bot.
 
 cop provides an object-oriented interface for easily developing extensions.
 
-### Module
+### [🡥][module] Module
 
 To initialize a module, call the Module constructor like so:
 
@@ -80,7 +80,7 @@ const eventList = {
 }
 ```
 
-### Action
+### [🡥][action] Action
 
 Actions are little objects with instructions embedded into them. For example, you could have a deletion action (`DeleteAction`) that tells cop to delete a certain message by a certain user!
 
@@ -131,39 +131,41 @@ class SendAction extends Action {
 
 cop's inner workings are also documented. This is useful if you're developing cop directly, or if your custom module needs some advanced extra-spicy stuff.
 
-### data
+### [🡥][data] data
 
-The [`data/`][data] directory contains datasets used by the built-in modules, such as a TLD list, character/replacement lists, etc.
+The `data/` directory contains datasets used by the built-in modules, such as a TLD list, character/replacement lists, etc.
 
-### schema
+### [🡥][schema] schema
 
-The [`schema/`][schema] directory contains several custom [joi][] schemas, such as [lenient booleans][schema/boolean], [punishment parsers][schema/punishment], and [Discord IDs][schema/snowflake]. Joi is used for config validation, so use these whenever possible in your module's config.
+The `schema/` directory contains several custom [joi][] schemas, such as [lenient booleans][schema/boolean], [punishment parsers][schema/punishment], and [Discord IDs][schema/snowflake]. Joi is used for config validation, so use these whenever possible in your module's config.
 
-### util
+### [🡥][util] util
 
-The [`util/`][util] directory contains a bunch of utility functions, which may or may not be useful in your case.
+The `util/` directory contains a bunch of utility functions, which may or may not be useful in your case.
 
-### index
+### [🡥][index] index
 
-The [`index`][index] or main file is the _heart_ of cop. It will load the config from the `config.yml` file, validate the config for each module, register all of the event handlers, login to Discord, and everything else a bot must do on start-up.
+The `index` or main file is the _heart_ of cop. It will load the config from the `config.yml` file, validate the config for each module, register all of the event handlers, login to Discord, and everything else a bot must do on start-up.
 
-### actionHandler
+### [🡥][actionhandler] actionHandler
 
-The [`createActionHandler()`][actionhandler] function receives the event handlers provided by all of the modules for a certain event (eg, all `message` event handlers by the `invites`, `links`, etc. modules) and returns a single function which will call them all on each event emission. After calling these, it will decide which actions returned by the event handlers will be executed (ie, by merging duplicate actions and ignoring conflicting ones).
+The `createActionHandler()` function receives the event handlers provided by all of the modules for a certain event (eg, all `message` event handlers by the `invites`, `links`, etc. modules) and returns a single function which will call them all on each event emission. After calling these, it will decide which actions returned by the event handlers will be executed (ie, by merging duplicate actions and ignoring conflicting ones).
 
 Essentially, the returned function is a "master" event handler; an event handler which calls multiple other event handlers.
 
-### logger
+### [🡥][logger] logger
 
-The [`logger`][logger] file exports a [winston][] Logger object (who would've thought?!), which will log to the console with pretty colors, and to the `logs/` directory. You shouldn't import this file directly (unless you really want to...), but instead use the Client#logger property.
+The `logger` file exports a [winston][] Logger object (who would've thought?!), which will log to the console with pretty colors, and to the `logs/` directory. You shouldn't import this file directly (unless you really want to...), but instead use the Client#logger property.
 
 <!-- references -->
 
 [docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
 [tsconfig]: https://github.com/cAttte/cop/blob/master/tsconfig.json
+[module]: https://github.com/cAttte/cop/blob/master/src/struct/Module.ts
 [joi]: https://joi.dev/
 [action-handler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
 [djs-events]: https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelCreate
+[action]: https://github.com/cAttte/cop/blob/master/src/struct/action/Action.ts
 [djs-base]: https://discord.js.org/#/docs/main/stable/class/Base
 [promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [data]: https://github.com/cAttte/cop/blob/master/src/data
