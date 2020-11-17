@@ -22,7 +22,7 @@ type ModuleOptions = {
 }
 
 // prettier-ignore
-type EventList = {
+export type EventList = {
     /** Emitted whenever a channel is created. */
     channelCreate?: (config: any, channel: Discord.TextChannel) => Action[] | Promise<Action[]>
     /** Emitted whenever a channel is deleted. */
