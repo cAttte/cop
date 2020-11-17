@@ -2,19 +2,23 @@
 
 This section of the docs will show you a lot on how cop works; whether you want to build a module for yourself or contribute directly to cop, this is for you! If you're exercising the latter, also check out the [Contribute][docs/contribute] section :)
 
--   [Scripts](#scripts)
+-   [Scripts](#Scripts)
     -   [build](#build)
     -   [watch](#watch)
     -   [start](#start)
--   [API](#api)
-    -   [Module](#module)
+-   [API](#API)
+    -   [Module](#Module)
     -   [Action](#action)
--   [Internals](#internals)
+        -   [DeleteAction](#NickAction)
+        -   [NickAction](#NickAction)
+        -   [PunishmentAction](#PunishmentAction)
+        -   [RoleAction](#RoleAction)
+-   [Internals](#Internals)
     -   [data](#data)
     -   [schema](#schema)
     -   [util](#util)
     -   [index](#index)
-    -   [actionHandler](#actionhandler)
+    -   [actionHandler](#actionHandler)
     -   [logger](#logger)
 
 ## Scripts
@@ -127,6 +131,24 @@ class SendAction extends Action {
 }
 ```
 
+#### [🡥][deleteaction] DeleteAction
+
+An action that deletes a message. The `target` property is of type `Discord.Message`.
+
+#### [🡥][nickaction] NickAction
+
+An action that nicknames a user. The `target` property is of type `Discord.GuildMember`, and the `detail` property is of type `string`, describing what nickname to use.
+
+#### [🡥][punishmentaction] PunishmentAction
+
+An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`).
+
+This class also has two static methods: `parsePunishment()`, which will parse a punishment string (eg, `ban permanently`) into punishment properties (eg, `{ type: "ban", length: Infinity }`); and `processPunishment()`, which will receive a punishment sequence (eg, `mute for 12h, then ban permanently`) and decide which one should be executed by checking the user's history (ie, `mute for 12h` the first time, `ban permanently` the second time).
+
+#### [🡥][roleaction] RoleAction
+
+An action that adds or removes a role to/from a guild member. The `target` property is of type `Discord.GuildMember`, and the `detail` property is of type `Discord.Role`, describing what role to add/remove. The constructor accepts an extra parameter before the properties object, `type`, of type `"add"` or `"remove"`.
+
 ## Internals
 
 cop's inner workings are also documented. This is useful if you're developing cop directly, or if your custom module needs some advanced extra-spicy stuff.
@@ -166,6 +188,10 @@ The `logger` file exports a [winston][] Logger object (who would've thought?!), 
 [action-handler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
 [djs-events]: https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelCreate
 [action]: https://github.com/cAttte/cop/blob/master/src/struct/action/Action.ts
+[deleteaction]: https://github.com/cAttte/cop/blob/master/src/struct/action/DeleteAction.ts
+[nickaction]: https://github.com/cAttte/cop/blob/master/src/struct/action/NickAction.ts
+[punishmentaction]: https://github.com/cAttte/cop/blob/master/src/struct/action/PunishmentAction.ts
+[roleaction]: https://github.com/cAttte/cop/blob/master/src/struct/action/RoleAction.ts
 [djs-base]: https://discord.js.org/#/docs/main/stable/class/Base
 [promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [data]: https://github.com/cAttte/cop/blob/master/src/data
