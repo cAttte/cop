@@ -1,12 +1,17 @@
 import chalk from "chalk"
 import Discord from "discord.js"
-import Action from "./Action"
+import Action, { ActionProperties } from "./Action"
 
 export default class RoleAction extends Action {
     type: "roleAdd" | "roleRemove"
     target: Discord.GuildMember
     reason: string
     detail: Discord.Role
+
+    constructor(type: "add" | "remove", properties: ActionProperties) {
+        super(properties)
+        this.type = type === "add" ? "roleAdd" : "roleRemove"
+    }
 
     get method() {
         return this.type === "roleAdd" ? "add" : "remove"
