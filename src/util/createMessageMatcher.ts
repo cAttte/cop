@@ -4,7 +4,7 @@ import PunishmentAction, { PunishmentProperties } from "../struct/action/Punishm
 import DeleteAction from "../struct/action/DeleteAction"
 
 type MessageMatcherProperties = {
-    matcher: (config: any, message: Discord.Message) => boolean
+    matcher: (config: any, message: Discord.Message) => Promise<boolean> | boolean
     module: string
     reason: string
 }
@@ -34,7 +34,7 @@ function createMessageHandler(
         if (!message.content) return
 
         const actions: Action[] = []
-        const matches = properties.matcher(config, message)
+        const matches = await properties.matcher(config, message)
 
         if (matches) {
             if (config.delete) {
