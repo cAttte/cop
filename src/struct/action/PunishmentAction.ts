@@ -3,15 +3,21 @@ import Discord from "discord.js"
 import parseDuration from "parse-duration"
 import Action, { ActionProperties } from "./Action"
 
-export default class PunishmentAction extends Action implements PunishmentProperties {
-    type: "null" | "mute" | "kick" | "ban"
-    length?: number
+type PunishmentType = "null" | "mute" | "kick" | "ban"
+
+export default class PunishmentAction extends Action {
+    type: PunishmentType
+    detail: number
     target: Discord.GuildMember
+
+    get length() {
+        return this.detail
+    }
 
     constructor(properties: ActionProperties & PunishmentProperties) {
         super(properties)
         this.type = properties.type
-        this.length = properties.length
+        this.detail = properties.detail == null ? properties.length : properties.detail
     }
 
     static parsePunishment(input: string | string[]): PunishmentProperties[] | Error {
