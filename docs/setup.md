@@ -1,8 +1,10 @@
 # 🔨 Setup
 
-This section will show you how to install cop on your computer. Once you're done with this, head over to the [Configure][docs/configure] section!
+This section will show you how to install cop to your computer. Once you're done with this, head over to the [Configure][docs/configure] section!
 
 -   [If you're _not_ into technical stuff](#if-youre-into-technical-stuff)
+    -   [If you're on Windows](#if-youre-on-windows)
+    -   [If you're on any other OS](#if-youre-on-any-other-os)
 -   [If you're into technical stuff](#if-youre-technical-stuff)
 
 **You will need to install [Node.js][nodejs] to run cop. The `LTS` version should be fine.**
@@ -14,6 +16,17 @@ Head over to the cop's [Releases][], and click on the `Source code (zip)` button
 _If you're a professional risk-taker and love your software with extra bugs, you can also download the source code from the latest revision. Just click on the green `Code` button on the main page and then on `Download ZIP`._
 
 Once you've acquired this neat ZIP, you can extract it with your favorite unzipping tool into your favorite folder.
+
+### If you're on Windows
+
+You can double-click on the `setup.bat` file, under the `windows/` folder.
+
+### If you're on any other OS
+
+You'll have to run these two commands from your terminal. Make sure you've browsed into the cop directory (with the `cd` command):
+
+    npm install
+    npm run build
 
 ## If you're into technical stuff
 
