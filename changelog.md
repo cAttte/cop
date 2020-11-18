@@ -2,7 +2,7 @@
 
 This section includes all of the changes made to cop since its first pre-release, for easy tracking of updates and breaking changes.
 
-## [v0.1.1][] <sub><sup>17/11/20</sup></sub>
+## [v0.1.1][] <sub><sup><sub>17/11/20</sub></sup></sub>
 
 **Documentation changes:**
 
@@ -20,7 +20,7 @@ This section includes all of the changes made to cop since its first pre-release
 -   Created [`createMessageMatcher()`](https://github.com/cAttte/cop/blob/master/src/util/createMessageMatcher.ts) utility function.
     -   Used it in all message modules.
 
-## [v0.1.0][] <sub><sup>16/11/20</sup></sub>
+## [v0.1.0][] <sub><sup><sub>16/11/20</sub></sup></sub>
 
 -   Initial pre-release
 
