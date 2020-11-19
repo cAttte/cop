@@ -1,5 +1,6 @@
 import chalk from "chalk"
 import Discord from "discord.js"
+import Client from "../Client"
 import Action, { ActionProperties } from "./Action"
 
 export default class RoleAction extends Action {
@@ -8,9 +9,9 @@ export default class RoleAction extends Action {
     reason: string
     detail: Discord.Role
 
-    constructor(type: "add" | "remove", properties: ActionProperties) {
-        super(properties)
-        this.type = type === "add" ? "roleAdd" : "roleRemove"
+    constructor(client: Client, properties: ActionProperties & RoleActionProperties) {
+        super(client, properties)
+        this.type = properties.type === "add" ? "roleAdd" : "roleRemove"
     }
 
     get method() {
@@ -47,4 +48,8 @@ export default class RoleAction extends Action {
         const targetID = chalk.blueBright(this.target.user.id)
         return `${pastMethod} ${roleName} (${roleID}) ${preposition} ${targetTag} (${targetID}).`
     }
+}
+
+export type RoleActionProperties = {
+    type: "add" | "remove"
 }

@@ -1,13 +1,16 @@
 import Discord from "discord.js"
+import Client from "../Client"
 
 export default abstract class Action implements ActionProperties {
+    client: Client
     type: string
     module: string
     target: Discord.Base
     reason: string
     detail?: any
 
-    constructor(properties: ActionProperties) {
+    constructor(client: Client, properties: ActionProperties) {
+        this.client = client
         this.module = properties.module
         this.target = properties.target
         this.reason = properties.reason

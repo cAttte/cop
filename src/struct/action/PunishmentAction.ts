@@ -1,5 +1,6 @@
 import chalk from "chalk"
 import Discord from "discord.js"
+import Client from "../Client"
 import parseDuration from "parse-duration"
 import Action, { ActionProperties } from "./Action"
 
@@ -14,8 +15,8 @@ export default class PunishmentAction extends Action {
         return this.detail
     }
 
-    constructor(properties: ActionProperties & PunishmentProperties) {
-        super(properties)
+    constructor(client: Client, properties: ActionProperties & PunishmentProperties) {
+        super(client, properties)
         this.type = properties.type
         this.detail = properties.detail == null ? properties.length : properties.detail
     }
@@ -69,10 +70,11 @@ export default class PunishmentAction extends Action {
 
     // return first punishment for now, todo: check punishment history
     static processPunishment(
+        client: Client,
         punishments: PunishmentProperties[],
         properties: ActionProperties
     ): PunishmentAction {
-        return new PunishmentAction({ ...punishments[0], ...properties })
+        return new PunishmentAction(client, { ...punishments[0], ...properties })
     }
 
     async execute(muteRole: Discord.Role): Promise<Discord.Base | Error> {
