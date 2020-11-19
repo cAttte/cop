@@ -48,7 +48,7 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
             unhoisted = "\u17B5" + member.displayName
 
         const actions: Action[] = [
-            new NickAction({
+            new NickAction(this, {
                 module: "NickHoist",
                 target: member,
                 reason: "Hoisting nickname",

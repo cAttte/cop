@@ -39,7 +39,8 @@ export default new Module({
                 }
 
                 actions.push(
-                    new RoleAction("add", {
+                    new RoleAction(this, {
+                        type: "add",
                         module: "Autoroles",
                         target: member,
                         reason: "Auto-role",
