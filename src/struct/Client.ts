@@ -1,10 +1,9 @@
 import Discord from "discord.js"
+import PunishmentProvider from "./PunishmentProvider"
 import logger from "../logger"
 
 export default class Client extends Discord.Client {
     logger = logger
-    config: {
-        muteRole?: Discord.Role
-        modules: any
-    }
+    punishment = new PunishmentProvider(this)
+    config: { muteRole?: Discord.Role; modules: any }
 }
