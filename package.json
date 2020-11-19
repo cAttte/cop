@@ -1,6 +1,6 @@
 {
     "name": "cop",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "ok cop. The minimalistic auto-moderation Discord bot. ™",
     "main": "dist/index.js",
     "scripts": {

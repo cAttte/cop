@@ -2,6 +2,22 @@
 
 This section includes all of the changes made to cop since its first pre-release, for easy tracking of updates and breaking changes.
 
+## [v0.1.2][] <sub><sup><sub>19/11/20</sub></sup></sub>
+
+**Documentation changes:**
+
+-   Added non-technical guide, explaining how to download source code without git.
+    -   Added batchfile `setup` and `start` scripts for Windows.
+-   Documented `Client`.
+-   Documented `PunishmentProvider`.
+
+**Internal changes:**
+
+-   Created `PunishmentProvider` class.
+    -   Created `punishment` property on `Client` class.
+    -   Moved most of `PunishmentAction` to it, the latter now acts as a wrapper around the former.
+    -   Fixed all of the bugs that came with this change.
+
 ## [v0.1.1][] <sub><sup><sub>17/11/20</sub></sup></sub>
 
 **Documentation changes:**
@@ -26,5 +42,6 @@ This section includes all of the changes made to cop since its first pre-release
 
 <!-- references -->
 
+[v0.1.2]: https://github.com/cAttte/cop/releases/tag/v0.1.2
 [v0.1.1]: https://github.com/cAttte/cop/releases/tag/v0.1.1
 [v0.1.0]: https://github.com/cAttte/cop/releases/tag/v0.1.0
