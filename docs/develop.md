@@ -155,7 +155,7 @@ An action that nicknames a user. The `target` property is of type `Discord.Guild
 
 #### [🡥][punishmentaction] PunishmentAction
 
-An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`). This class depends on [`PunishmentProvider`][#-punishmentprovider], but not vice versa.
+An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`). This class depends on [`PunishmentProvider`]([#-punishmentprovider), but not vice versa.
 
 #### [🡥][roleaction] RoleAction
 
