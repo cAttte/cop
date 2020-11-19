@@ -2,7 +2,6 @@ import Discord from "discord.js"
 import { EventList } from "../struct/Module"
 import Action from "../struct/action/Action"
 import { PunishmentProperties } from "../struct/PunishmentProvider"
-import PunishmentAction from "../struct/action/PunishmentAction"
 import DeleteAction from "../struct/action/DeleteAction"
 
 type MessageMatcherProperties = {
@@ -44,7 +43,7 @@ function createMessageHandler(
         if (matches) {
             if (config.delete) {
                 actions.push(
-                    new DeleteAction({
+                    new DeleteAction(this, {
                         module: properties.module,
                         target: message,
                         reason: properties.reason
@@ -54,7 +53,7 @@ function createMessageHandler(
 
             if (config.punishment) {
                 actions.push(
-                    PunishmentAction.processPunishment(config.punishment, {
+                    this.punishment.processPunishment(config.punishment, {
                         module: properties.module,
                         target: message.member,
                         reason: properties.reason
