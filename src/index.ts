@@ -72,9 +72,9 @@ async function main() {
     }
 
     const client = new Client({
-        partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"]
+        partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"],
+        config: loadedConfig
     })
-    client.config = loadedConfig
 
     const before = Date.now()
     await client.login(config.token).catch((error: Error) => {
