@@ -78,7 +78,7 @@ export default class PunishmentProvider {
     processPunishment(
         punishments: PunishmentProperties[],
         properties: ActionProperties
-    ): PunishmentProperties {
+    ): PunishmentProperties & ActionProperties {
         return { ...punishments[0], ...properties }
     }
 }
