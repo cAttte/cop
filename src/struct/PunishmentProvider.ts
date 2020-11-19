@@ -3,8 +3,11 @@ import chalk from "chalk"
 import Discord from "discord.js"
 import Client from "./Client"
 import { ActionProperties } from "./action/Action"
-import PunishmentAction, { PunishmentProperties } from "./action/PunishmentAction"
+import PunishmentAction from "./action/PunishmentAction"
 import permanent from "../data/permanentLengths"
+
+export type PunishmentType = "null" | "mute" | "kick" | "ban"
+export type PunishmentProperties = { type: PunishmentType; length?: number }
 
 export default class PunishmentProvider {
     client: Client
@@ -43,7 +46,7 @@ export default class PunishmentProvider {
                 return new Error(
                     `Could not interpret punishment "${chalk.redBright(punishment)}".`
                 )
-            properties.type = <"mute" | "kick" | "ban">type
+            properties.type = <PunishmentType>type
 
             const rawLength = punishment
                 .slice(typeMatch[0].length)

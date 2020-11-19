@@ -2,8 +2,7 @@ import chalk from "chalk"
 import Discord from "discord.js"
 import Client from "../Client"
 import Action, { ActionProperties } from "./Action"
-
-type PunishmentType = "null" | "mute" | "kick" | "ban"
+import { PunishmentType, PunishmentProperties } from "../PunishmentProvider"
 
 export default class PunishmentAction extends Action {
     type: PunishmentType
@@ -60,9 +59,4 @@ export default class PunishmentAction extends Action {
             return ` for ${(this.length / 1000).toLocaleString()} seconds`
         return ""
     }
-}
-
-export type PunishmentProperties = {
-    type: "null" | "mute" | "kick" | "ban"
-    length?: number
 }
