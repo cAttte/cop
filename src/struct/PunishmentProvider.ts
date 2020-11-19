@@ -17,15 +17,15 @@ export default class PunishmentProvider {
 
     async mute(member: Discord.GuildMember, reason: string, length: number) {
         const role = this.client.config.muteRole
-        await member.roles.add(role)
+        return await member.roles.add(role)
     }
 
     async kick(member: Discord.GuildMember, reason: string) {
-        await member.kick()
+        return await member.kick()
     }
 
     async ban(member: Discord.GuildMember, reason: string, length: number) {
-        await member.ban()
+        return await member.ban()
     }
 
     parsePunishment(input: string | string[]): PunishmentProperties[] | Error {
