@@ -32,6 +32,14 @@ export default new Module({
             let links: string[] = []
             let matches: RegExpExecArray
             while ((matches = urlRegex.exec(message.content))) links.push(matches[1])
+
+            // invites module takes care of this, so avoid duplicate punishment
+            links = links.filter(url => {
+                return !url.match(
+                    /^(https?:\/\/)?(discord\.(gg|io|me|li)|discord(app)?\.com\/invite)/
+                )
+            })
+
             if (config.validate) {
                 links = links.filter(url => {
                     const tld = url.match(/\.[a-z0-9]{2,6}$/i)?.[0]
