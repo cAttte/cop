@@ -2,6 +2,12 @@
 
 This section includes all of the changes made to cop since its first pre-release, for easy tracking of updates and breaking changes.
 
+## [v0.1.4][] <sub><sup><sub>19/11/20</sub></sup></sub>
+
+**Bug fixes:**
+
+-   (TextWalls): Fixed module deleting every message.
+
 ## [v0.1.3][] <sub><sup><sub>19/11/20</sub></sup></sub>
 
 **Bug fixes:**
@@ -12,7 +18,8 @@ This section includes all of the changes made to cop since its first pre-release
 
 **Bugs:**
 
--   `punishment` schema type depends on `PunishmentAction.parsePunishment()`, which no longer exists. **Fixed in v0.1.3.**
+-   `punishment` schema type depends on `PunishmentAction.parsePunishment()`, which no longer exists.
+    -   **Fixed in v0.1.3.**
 
 **Documentation changes:**
 
@@ -29,6 +36,11 @@ This section includes all of the changes made to cop since its first pre-release
     -   Fixed all of the bugs that came with this change.
 
 ## [v0.1.1][] <sub><sup><sub>17/11/20</sub></sup></sub>
+
+**Bugs:**
+
+-   (TextWalls): Every message is deleted.
+    -   **Fixed in v0.1.4.**
 
 **Documentation changes:**
 
@@ -52,6 +64,7 @@ This section includes all of the changes made to cop since its first pre-release
 
 <!-- references -->
 
+[v0.1.4]: https://github.com/cAttte/cop/releases/tag/v0.1.4
 [v0.1.3]: https://github.com/cAttte/cop/releases/tag/v0.1.3
 [v0.1.2]: https://github.com/cAttte/cop/releases/tag/v0.1.2
 [v0.1.1]: https://github.com/cAttte/cop/releases/tag/v0.1.1
