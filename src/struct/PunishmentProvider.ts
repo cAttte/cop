@@ -25,7 +25,7 @@ export default class PunishmentProvider {
         await member.ban()
     }
 
-    static parsePunishment(input: string | string[]): PunishmentProperties[] | Error {
+    parsePunishment(input: string | string[]): PunishmentProperties[] | Error {
         if (typeof input === "string")
             input = input.split(/ +?(,|;|then|(,|;) +?then) +?/i)
 
@@ -73,7 +73,7 @@ export default class PunishmentProvider {
     }
 
     // return first punishment for now, todo: check punishment history
-    static processPunishment(
+    processPunishment(
         client: Client,
         punishments: PunishmentProperties[],
         properties: ActionProperties
