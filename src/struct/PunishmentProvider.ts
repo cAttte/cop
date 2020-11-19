@@ -4,6 +4,7 @@ import Discord from "discord.js"
 import Client from "./Client"
 import { ActionProperties } from "./action/Action"
 import PunishmentAction, { PunishmentProperties } from "./action/PunishmentAction"
+import permanent from "../data/permanentLengths"
 
 export default class PunishmentProvider {
     client: Client
@@ -80,15 +81,3 @@ export default class PunishmentProvider {
         return new PunishmentAction(client, { ...punishments[0], ...properties })
     }
 }
-
-const permanent = [
-    "forever",
-    "ever",
-    "permanent",
-    "permanently",
-    "infinity",
-    "infinite",
-    "inf",
-    "∞",
-    "until the end of times"
-]
