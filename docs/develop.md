@@ -155,11 +155,11 @@ An action that nicknames a user. The `target` property is of type `Discord.Guild
 
 #### [🡥][punishmentaction] PunishmentAction
 
-An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`). This class depends on [`PunishmentProvider`]([#-punishmentprovider), but not vice versa.
+An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (it doesn't apply for punishment type `kick`). The properties object accepted by the constructor has two extra properties, `type` and `length`. This class depends on [`PunishmentProvider`]([#-punishmentprovider), but not vice versa.
 
 #### [🡥][roleaction] RoleAction
 
-An action that adds or removes a role to/from a guild member. The `target` property is of type `Discord.GuildMember`, and the `detail` property is of type `Discord.Role`, describing what role to add/remove. The constructor accepts an extra parameter before the properties object, `type`, of type `"add"` or `"remove"`.
+An action that adds or removes a role to/from a guild member. The `target` property is of type `Discord.GuildMember`, and the `detail` property is of type `Discord.Role`, describing what role to add/remove. The properties object accepted by the constructor has an extra property, `type`, which can be `"add"` or `"remove"`.
 
 ## Internals
 
