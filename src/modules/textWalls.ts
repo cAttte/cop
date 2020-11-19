@@ -36,7 +36,7 @@ export default new Module({
                 const wrapValue = (lineWidth - remainder) / 1200
                 lines += wrapValue + 1
             }
-            return lines <= config.maxLines
+            return lines > config.maxLines
         }
     })
 })
