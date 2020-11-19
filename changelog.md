@@ -2,7 +2,17 @@
 
 This section includes all of the changes made to cop since its first pre-release, for easy tracking of updates and breaking changes.
 
+## [v0.1.3][] <sub><sup><sub>19/11/20</sub></sup></sub>
+
+**Bug fixes:**
+
+-   Used `PunishmentProvider#parsePunishment()` in `punishment` schema type.
+
 ## [v0.1.2][] <sub><sup><sub>19/11/20</sub></sup></sub>
+
+**Bugs:**
+
+-   `punishment` schema type depends on `PunishmentAction.parsePunishment()`, which no longer exists. **Fixed in v0.1.3.**
 
 **Documentation changes:**
 
@@ -42,6 +52,7 @@ This section includes all of the changes made to cop since its first pre-release
 
 <!-- references -->
 
+[v0.1.3]: https://github.com/cAttte/cop/releases/tag/v0.1.3
 [v0.1.2]: https://github.com/cAttte/cop/releases/tag/v0.1.2
 [v0.1.1]: https://github.com/cAttte/cop/releases/tag/v0.1.1
 [v0.1.0]: https://github.com/cAttte/cop/releases/tag/v0.1.0
