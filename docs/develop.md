@@ -9,6 +9,7 @@ This section of the docs will show you a lot on how cop works; whether you want 
 -   [API](#API)
     -   [Client](#-Client)
     -   [Module](#-Module)
+    -   [PunishmentProvider](#-PunishmentProvider)
     -   [Action](#-Action)
         -   [DeleteAction](#-DeleteAction)
         -   [NickAction](#-NickAction)
@@ -45,6 +46,10 @@ Start the bot.
 ## API
 
 cop provides an object-oriented interface for easily developing extensions.
+
+### [🡥][client] Client
+
+This is a simple sub-class of the `Discord.Client` class. It implements three properties: `logger`, of type `winston.Logger`, which is used for... you guessed it! logging; `punishment` a [`PunishmentProvider`](#-PunishmentProvider); and `config`, an object populated by the main file on start-up.
 
 ### [🡥][module] Module
 
@@ -85,9 +90,13 @@ const eventList = {
 }
 ```
 
-### [🡥][client] Client
+### [🡥][punishmentprovider] PunishmentProvider
 
-This is a simple sub-class of the `Discord.Client` class. It implements three properties: `logger`, of type `winston.Logger`, which is used for... you guessed it! logging; `punishment` a [`PunishmentProvider`](#-PunishmentProvider); and `config`, an object populated by the main file on start-up.
+This class is in charge of dispatching punishment to guild members and interacting with the database to store these actions in their history. [`PunishmentAction`](#-PunishmentAction) depends on this class, but not vice versa.
+
+It has three main methods, `mute(member, reason, length)`, `kick(member, reason)` and `ban(reason, length)`, where `member` is a `Discord.GuildMember`, `reason` a `string`, and `length` a `number` (of milliseconds).
+
+It also has two other useful methods, `parsePunishment()`, which will parse a punishment string (eg, `ban permanently`) into punishment properties (eg, `{ type: "ban", length: Infinity }`); and `processPunishment()`, which will receive a punishment sequence (eg, `mute for 12h, then ban permanently`) and decide which one should be executed by checking the user's history (ie, `mute for 12h` the first time, `ban permanently` the second time).
 
 ### [🡥][action] Action
 
@@ -146,9 +155,7 @@ An action that nicknames a user. The `target` property is of type `Discord.Guild
 
 #### [🡥][punishmentaction] PunishmentAction
 
-An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`).
-
-This class also has two static methods: `parsePunishment()`, which will parse a punishment string (eg, `ban permanently`) into punishment properties (eg, `{ type: "ban", length: Infinity }`); and `processPunishment()`, which will receive a punishment sequence (eg, `mute for 12h, then ban permanently`) and decide which one should be executed by checking the user's history (ie, `mute for 12h` the first time, `ban permanently` the second time).
+An action that punishes a user, be it by muting, kicking, or banning them. The `detail` property (or its alias `length`) is of type `number`, and it represents how long the punishment will last for (therefore, this does not apply for punishment type `kick`). This class depends on [`PunishmentProvider`][#-punishmentprovider], but not vice versa.
 
 #### [🡥][roleaction] RoleAction
 
@@ -225,6 +232,7 @@ The `logger` file exports a [`winston.Logger`][winston] object (who would've tho
 [tsconfig]: https://github.com/cAttte/cop/blob/master/tsconfig.json
 [client]: https://github.com/cAttte/cop/blob/master/src/struct/Client.ts
 [module]: https://github.com/cAttte/cop/blob/master/src/struct/Module.ts
+[punishmentprovider]: https://github.com/cAttte/cop/blob/master/src/struct/PunishmentProvider.ts
 [joi]: https://joi.dev/
 [action-handler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
 [djs-events]: https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelCreate
