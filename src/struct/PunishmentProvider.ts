@@ -3,7 +3,6 @@ import chalk from "chalk"
 import Discord from "discord.js"
 import Client from "./Client"
 import { ActionProperties } from "./action/Action"
-import PunishmentAction from "./action/PunishmentAction"
 import permanent from "../data/permanentLengths"
 
 export type PunishmentType = "null" | "mute" | "kick" | "ban"
@@ -77,10 +76,9 @@ export default class PunishmentProvider {
 
     // return first punishment for now, todo: check punishment history
     processPunishment(
-        client: Client,
         punishments: PunishmentProperties[],
         properties: ActionProperties
-    ): PunishmentAction {
-        return new PunishmentAction(client, { ...punishments[0], ...properties })
+    ): PunishmentProperties {
+        return { ...punishments[0], ...properties }
     }
 }
