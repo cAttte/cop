@@ -1,7 +1,8 @@
 import Discord from "discord.js"
 import { EventList } from "../struct/Module"
 import Action from "../struct/action/Action"
-import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
+import PunishmentAction from "../struct/action/PunishmentAction"
 import DeleteAction from "../struct/action/DeleteAction"
 
 type MessageMatcherProperties = {
