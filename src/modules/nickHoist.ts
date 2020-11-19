@@ -5,7 +5,8 @@ import Module from "../struct/Module"
 import Client from "../struct/Client"
 import Action from "../struct/action/Action"
 import NickAction from "../struct/action/NickAction"
-import PunishmentAction, { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
+import PunishmentAction from "../struct/action/PunishmentAction"
 import characters from "../data/hoistingCharacters"
 
 export default new Module({

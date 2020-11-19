@@ -5,7 +5,7 @@ import boolean from "../schema/boolean"
 import punishment from "../schema/punishment"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
-import { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
 import createMessageMatcher from "../util/createMessageMatcher"
 
 export default new Module({

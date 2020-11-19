@@ -4,7 +4,7 @@ import Discord from "discord.js"
 import Client from "../struct/Client"
 import boolean from "../schema/boolean"
 import Module from "../struct/Module"
-import { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
 import createMessageMatcher from "../util/createMessageMatcher"
 import tlds from "../data/topLevelDomains"
 

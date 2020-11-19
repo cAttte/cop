@@ -4,7 +4,7 @@ import punishment from "../schema/punishment"
 import * as Twemoji from "twemoji-parser"
 import Discord from "discord.js"
 import Module from "../struct/Module"
-import { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
 import createMessageMatcher from "../util/createMessageMatcher"
 
 export default new Module({

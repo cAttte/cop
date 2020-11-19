@@ -4,7 +4,7 @@ import Discord from "discord.js"
 import { parser } from "discord-markdown"
 import Module from "../struct/Module"
 import Client from "../struct/Client"
-import { PunishmentProperties } from "../struct/action/PunishmentAction"
+import { PunishmentProperties } from "../struct/PunishmentProvider"
 import characters from "../data/blankCharacters"
 import createMessageMatcher from "../util/createMessageMatcher"
 
