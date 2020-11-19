@@ -19,18 +19,11 @@ export default class PunishmentAction extends Action {
         this.detail = properties.detail == null ? properties.length : properties.detail
     }
 
-    async execute(muteRole: Discord.Role): Promise<Discord.Base | Error> {
+    async execute(): Promise<Discord.Base | Error> {
         try {
-            switch (this.type) {
-                case "null":
-                    return this.target
-                case "mute":
-                    return await this.target.roles.add(muteRole)
-                case "kick":
-                    return await this.target.kick(this.reason)
-                case "ban":
-                    return await this.target.ban({ reason: this.reason })
-            }
+            if (this.type === "null") return this.target
+            const punish = this.client.punishment[this.type]
+            return await punish(this.target, this.reason, this.length)
         } catch (error) {
             return error
         }
