@@ -58,11 +58,14 @@ function createMemberHandler(event: "guildMemberAdd" | "guildMemberUpdate") {
 
         if (config.punishment) {
             actions.push(
-                PunishmentAction.processPunishment(config.punishment, {
-                    module: "NickHoist",
-                    target: member,
-                    reason: "Hoisting nickname"
-                })
+                new PunishmentAction(
+                    this,
+                    this.punishment.processPunishment(config.punishment, {
+                        module: "NickHoist",
+                        target: member,
+                        reason: "Hoisting nickname"
+                    })
+                )
             )
         }
 
