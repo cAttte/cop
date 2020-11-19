@@ -7,6 +7,7 @@ This section of the docs will show you a lot on how cop works; whether you want 
     -   [watch](#watch)
     -   [start](#start)
 -   [API](#API)
+    -   [Client](#-Client)
     -   [Module](#-Module)
     -   [Action](#-Action)
         -   [DeleteAction](#-DeleteAction)
@@ -83,6 +84,10 @@ const eventList = {
     }
 }
 ```
+
+### [🡥][client] Client
+
+This is a simple sub-class of the `Discord.Client` class. It implements three properties: `logger`, of type `winston.Logger`, which is used for... you guessed it! logging; `punishment` a [`PunishmentProvider`](#-PunishmentProvider); and `config`, an object populated by the main file on start-up.
 
 ### [🡥][action] Action
 
@@ -212,12 +217,13 @@ Essentially, the returned function is a "master" event handler; an event handler
 
 ### [🡥][logger] logger
 
-The `logger` file exports a [winston][] Logger object (who would've thought?!), which will log to the console with pretty colors, and to the `logs/` directory. You shouldn't import this file directly (unless you really want to...), but instead use the Client#logger property.
+The `logger` file exports a [`winston.Logger`][winston] object (who would've thought?!), which will log to the console with pretty colors, and to the `logs/` directory. You shouldn't import this file directly (unless you really want to...), but instead use the [`Client#logger`](#-Client) property.
 
 <!-- references -->
 
 [docs/contribute]: https://github.com/cAttte/cop/blob/master/docs/contribute.md
 [tsconfig]: https://github.com/cAttte/cop/blob/master/tsconfig.json
+[client]: https://github.com/cAttte/cop/blob/master/src/struct/Client.ts
 [module]: https://github.com/cAttte/cop/blob/master/src/struct/Module.ts
 [joi]: https://joi.dev/
 [action-handler]: https://github.com/cAttte/cop/blob/master/src/actionHandler.ts
