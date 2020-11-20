@@ -15,7 +15,7 @@ Head over to cop's [Releases][], and click on the `Source code (zip)` button fro
 
 _If you're a professional risk-taker and love your software with extra bugs, you can also download the source code from the latest revision. Just click on the green `Code` button on the main page and then on `Download ZIP`._
 
-Once you've acquired this neat ZIP, you can extract it with your favorite unzipping tool into your favorite folder.
+Once you've acquired this neat ZIP, you can extract it with your [favorite][zip-1] [unzipping][zip-2] [tool][zip-3] into your [favorite folder][folder].
 
 ### If you're on Windows
 
@@ -48,5 +48,9 @@ Build the code to pure JavaScript:
 [docs/configure]: https://github.com/cAttte/cop/blob/master/docs/configure.md
 [releases]: https://github.com/cAttte/cop/releases/
 [nodejs]: https://nodejs.org/en/
+[zip-1]: https://www.7-zip.org/
+[zip-2]: https://www.win-rar.com/
+[zip-3]: https://theunarchiver.com/
+[folder]: https://xkcd.com/981/
 [git]: https://git-scm.com/
 [npm]: https://www.npmjs.com/
