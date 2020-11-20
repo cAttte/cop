@@ -11,7 +11,7 @@ This section will show you how to install cop to your computer. Once you're done
 
 ## If you're _not_ into technical stuff
 
-Head over to the cop's [Releases][], and click on the `Source code (zip)` button from the latest stable release (or an older one, if you're into that... just don't download a 3 year old release, please?).
+Head over to cop's [Releases][], and click on the `Source code (zip)` button from the latest stable release (or an older one, if you're into that... just don't download a 3 year old release, please?).
 
 _If you're a professional risk-taker and love your software with extra bugs, you can also download the source code from the latest revision. Just click on the green `Code` button on the main page and then on `Download ZIP`._
 
