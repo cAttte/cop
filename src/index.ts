@@ -21,6 +21,7 @@ import textWalls from "./modules/textWalls"
 const modules = { autoroles, emojis, emptyMessages, invites, links, nickHoist, textWalls }
 
 const loadedConfig: { muteRole?: Discord.Role; modules: any } = { modules: {} }
+const DB_VERSION = 1
 
 async function main() {
     logger.debug("Loading config...")
@@ -75,6 +76,21 @@ async function main() {
         partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"],
         config: loadedConfig
     })
+
+    await client.db.authenticate().catch((error: Error) => {
+        logger.error(`While trying to connect to database: ${error.message}`)
+        process.exit(0)
+    })
+
+    const results: any = await client.db.query("PRAGMA user_version", { type: "SELECT" })
+    const version: number = results?.[0]?.user_version
+    if (version > DB_VERSION) {
+        // prettier-ignore
+        logger.error("Version in database is higher than cop's, update cop (or remove the database).")
+        process.exit(0)
+    }
+    await client.db.query(`PRAGMA user_version = ${DB_VERSION}`)
+    logger.info(`Connected to database (version ${DB_VERSION}).`)
 
     const before = Date.now()
     await client.login(config.token).catch((error: Error) => {
