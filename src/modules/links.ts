@@ -3,6 +3,7 @@ import fetch from "node-fetch"
 import Discord from "discord.js"
 import Client from "../struct/Client"
 import boolean from "../schema/boolean"
+import punishment from "../schema/punishment"
 import Module from "../struct/Module"
 import { PunishmentProperties } from "../struct/PunishmentProvider"
 import createMessageMatcher from "../util/createMessageMatcher"
@@ -12,7 +13,8 @@ export default new Module({
     configSchema: {
         validate: boolean,
         validationLimit: Joi.number().integer().allow(Infinity).default(Infinity),
-        delete: boolean
+        delete: boolean,
+        punishment: punishment
     },
     events: createMessageMatcher({
         module: "Links",
