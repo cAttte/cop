@@ -22,7 +22,7 @@
     "bugs": "https://github.com/cAttte/cop/issues",
     "homepage": "https://github.com/cAttte/cop#readme",
     "devDependencies": {
-        "@types/node-fetch": "^2.5.7",
+        "@types/node-fetch": "^2.5.10",
         "@types/string-pixel-width": "^1.7.1",
         "@types/twemoji-parser": "^12.1.0",
         "typescript": "^4.1.3"
