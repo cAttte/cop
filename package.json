@@ -33,7 +33,7 @@
         "discord.js": "^12.5.1",
         "fanum": "^1.0.0",
         "joi": "^17.2.1",
-        "node-fetch": "^2.6.1",
+        "node-fetch": "^3.2.0",
         "parse-duration": "^0.4.4",
         "sequelize": "^6.3.5",
         "sqlite3": "^5.0.1",
