@@ -35,7 +35,7 @@
         "joi": "^17.2.1",
         "node-fetch": "^2.6.1",
         "parse-duration": "^0.4.4",
-        "sequelize": "^6.3.5",
+        "sequelize": "^6.19.0",
         "sqlite3": "^5.0.1",
         "string-pixel-width": "^1.10.0",
         "strip-ansi": "^6.0.0",
