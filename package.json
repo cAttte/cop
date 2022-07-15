@@ -36,7 +36,7 @@
         "node-fetch": "^2.6.1",
         "parse-duration": "^0.4.4",
         "sequelize": "^6.3.5",
-        "sqlite3": "^5.0.1",
+        "sqlite3": "^5.0.9",
         "string-pixel-width": "^1.10.0",
         "strip-ansi": "^6.0.0",
         "twemoji-parser": "^13.0.0",
