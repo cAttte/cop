@@ -32,7 +32,7 @@
         "discord-markdown": "^2.4.1",
         "discord.js": "^12.5.1",
         "fanum": "^1.0.0",
-        "joi": "^17.2.1",
+        "joi": "^17.6.1",
         "node-fetch": "^2.6.1",
         "parse-duration": "^0.4.4",
         "sequelize": "^6.3.5",
